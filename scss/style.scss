@@ -1,0 +1,19 @@
+/* reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+//import
+@import "html/index";
+@import "html/nosotros";
+@import "html/login";
+@import "html/contacto";
+@import "html/landing";

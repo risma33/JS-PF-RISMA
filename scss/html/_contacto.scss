@@ -1,0 +1,98 @@
+//import
+@import "../extra/fonts";
+@import "../extra/maps";
+@import "../extra/mixin";
+
+//vision para celulares
+/*estilos contacto*/
+body {
+    .main__contacto {
+        background-color: #ffff;
+        display: flex;
+        justify-content: center;
+
+        form {
+            margin: 2rem;
+            height: 100%;
+
+            fieldset {
+                padding: 0px;
+                border: none;
+                background: map-get($map: $background, $key: bg_wt-bl);
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+
+
+                ul {
+                    list-style-type: none;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 100%;
+
+                    li {
+                        padding: 1.5rem 2rem 0rem 2rem;
+                        display: block;
+                        width: 100%;
+                        border: none;
+                        border-radius: 3px;
+
+                        input{
+                            display: block;
+                            width: 100%;
+                            padding: 0.7rem;
+                            border: none;
+                            border-radius: 3px;
+                        }
+
+                        #mensaje {
+                            display: block;
+                            width: 100%;
+                            padding: 0.5rem;
+                            margin-bottom: 1rem;
+                            border: none;
+                            border-radius: 3px;
+                        }
+                    }
+
+                    .button-enviar{
+                        input {
+                            background-color: transparent;
+                            color: #ffff;
+                            margin-bottom: 0.5rem;
+                            border: none;
+                            width: 100%;
+                            padding: 0.5rem;
+                            border-radius: 3px;
+                            cursor: pointer;
+                            font-family: $font-italic;
+                        }
+    
+                        input:hover {
+                            background-color: #ffff;
+                            color: #6E99B3;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .footer {
+        @include footer;
+        position: relative;
+        margin-bottom: 0px;
+    }
+}
+
+@media screen and (min-height: 800px) {
+    body{
+        .main__contacto{
+            height: 90vh;
+
+            form{
+                margin: 4rem;
+            }
+        }
+    }
+}

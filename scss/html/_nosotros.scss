@@ -1,0 +1,128 @@
+//import
+@import "../extra/fonts";
+@import "../extra/maps";
+@import "../extra/mixin";
+
+/*estilo celular*/
+
+body {
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .main--nosotros {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        height: 100%;
+        row-gap: 0px;
+        text-align: center;
+        font-family: $font-normal;
+        color: #6e99b3;
+
+        .main__nosotros--resume {
+            padding: 5rem;
+            font-family: $font-normal;
+            height: 100%;
+
+            h2 {
+                margin-bottom: 3rem;
+            }
+
+            .main__nosotros--texto {
+                display: none;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+        }
+
+        .main__nosotros--img {
+            display: none;
+        }
+    }
+
+    .main__nosotros--footer {
+        @include footer;
+    }
+}
+
+/*estilos tablet*/
+@media screen and (min-width: 768px) {
+    body {
+        .main--nosotros {
+            .main__nosotros--resume {
+                padding: 5rem;
+                font-family: $font-normal;
+
+                h2 {
+                    margin-bottom: 3rem;
+                }
+
+                .main__nosotros--texto {
+                    display: block;
+                }
+
+                h3 {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-height: 700px){
+    body{
+        .main--nosotros{
+            height: 90vh;
+        }
+    }
+}
+
+/*estilos desktop*/
+@media screen and (min-width: 1024px) {
+
+    body {
+        .main--nosotros {
+            grid-template-columns: 1fr;
+            grid-row: 1fr 1fr;
+            width: 100%;
+            height: 100%;
+            justify-items: center;
+            align-items: center;
+
+            .main__nosotros--resume {
+                padding: 5rem;
+                font-family: $font-normal;
+
+                h2 {
+                    margin-bottom: 3rem;
+                }
+
+                .main__nosotros--texto {
+                    display: block;
+                }
+
+                h3 {
+                    display: none;
+                }
+            }
+
+            .main__nosotros--img {
+                display: block;
+                height: 100%;
+
+                img{
+                   height: 40rem;
+                width: auto;
+                object-fit: contain; 
+                }
+                
+            }
+        }
+
+    }
+
+}

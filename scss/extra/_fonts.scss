@@ -1,0 +1,20 @@
+//font
+
+@font-face {
+    font-family: "ethnocentric-italic";
+    src: url(../font/ethnocentric.rg-italic.otf);
+}
+
+@font-face {
+    font-family: "ethnocentric";
+    src: url(../font/ethnocentricrg.otf);
+}
+
+@font-face {
+    font-family: "montserrat";
+    src: url(../../font/Montserrat-Bold.ttf);
+}
+
+$font-italic: "ethnocentric-italic";
+$font-normal: "ethnocentric";
+$font-montserrat: "montserrat"

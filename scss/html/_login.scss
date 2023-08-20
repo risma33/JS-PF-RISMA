@@ -1,0 +1,87 @@
+//import
+@import "../extra/fonts";
+@import "../extra/maps";
+@import "../extra/mixin";
+
+//estilos para celulares
+body {
+    .main__login {
+        background-color: #ffff;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        form {
+            height: 20rem;
+
+            fieldset {
+                padding: 1.5rem 1.5rem 0rem 1.5rem;
+                border: none;
+                background: map-get($map: $background, $key: bg_wt-bl);
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+
+                legend {
+                    display: none;
+                }
+
+                .main__login--ingreso {
+                    margin-bottom: 1.5rem;
+
+                    input {
+                        border: none;
+                        width: 100%;
+                        padding: 0.5rem;
+                        border-radius: 3px;
+                    }
+                }
+
+                .main__login--buttonis {
+                    input {
+                        background-color: transparent;
+                        color: #ffff;
+                        border: none;
+                        width: 100%;
+                        padding: 1rem;
+                        border-radius: 3px;
+                        cursor: pointer;
+                        font-family: $font-italic;
+
+                        &:hover {
+                            background-color: #ffff;
+                            color: #6E99B3;
+                        }
+                    }
+                }
+
+                .main__login--register {
+                    font-family: $font-normal;
+                    color: #ffff;
+                    text-align: center;
+                    padding: 1.5rem 1rem 0rem 1rem;
+
+                    p {
+                        font-size: 0.6rem;
+
+                        span {
+                            font-family: $font-italic;
+                            cursor: pointer;
+                            padding: 0.5rem;
+
+                            &:hover {
+                                background-color: #ffff;
+                                color: #6E99B3;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    .footer {
+        @include footer;
+    }
+}

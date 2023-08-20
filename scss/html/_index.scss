@@ -1,0 +1,297 @@
+//import
+@import "../extra/fonts";
+@import "../extra/maps";
+@import "../extra/mixin";
+
+/*estilos para celulares*/
+
+/*estilos index*/
+body {
+    background-color: #ffff;
+    height: 100vh;
+
+    /*estilos header*/
+    header {
+        nav {
+            background: map-get($map: $background, $key: bg_wt-bl-hz);
+
+            .container-fluid {
+                .full-logo {
+                    @include full-logo-size-ajust (1.3rem, #ffff);
+
+                    &:hover {
+                        @include swing-animation;
+                    }
+                }
+
+
+
+
+                .navbar-toggler:hover {
+                    background-color: #ffff;
+                }
+
+                #navbarNav {
+                    text-align: end;
+
+                    .navbar-nav {
+                        .nav-item {
+                            .nav-link {
+                                font-family: $font-normal;
+                                color: #fff;
+
+                                &:hover {
+                                    color: #5c7a92;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .header__banner {
+            display: none;
+        }
+    }
+
+    /*estilos main*/
+
+    .main--index {
+        height: auto;
+        width: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        text-align: center;
+        font-family: $font-normal;
+
+
+
+        .main__resumen--uno {
+            color: #6e99b3;
+            font-family: $font-normal;
+            width: 100vw;
+
+            h2 {
+                font-size: 1.3em;
+                padding: 4rem;
+                line-height: 1.5;
+
+                span {
+                    font-size: 0.9em;
+                    display: none;
+                }
+            }
+
+            img {
+                display: block;
+                height: auto;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 0%;
+            }
+
+        }
+
+
+        .main__resumen--dos {
+            width: 100vw;
+            height: 100%;
+            color: #ffff;
+            background: map-get($map: $background, $key: bg-bl-wt);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: $font-montserrat;
+            font-size: 1.3rem;
+
+            h3 {
+                padding: 8rem 4rem 4rem 4rem;
+                font-size: 1.5em;
+            }
+
+
+            img {
+                display: block;
+                height: 25rem;
+                width: auto;
+                object-fit: contain;
+                padding: 0rem 2rem 2rem 2rem;
+                border-radius: 30%;
+            }
+        }
+
+        .main__resumen--tres {
+            @extend .main__resumen--dos;
+            background: map-get($map: $background, $key: bg_wt-bl);
+
+
+            h4 {
+                padding: 8rem 4rem 4rem 4rem;
+                font-size: 1.5em;
+            }
+
+            img {
+                border-radius: 30%;
+            }
+        }
+
+        .main__resumen--cuatro {
+            @extend .main__resumen--dos;
+            background: map-get($map: $background, $key: bg-bl-wt);
+
+            h5 {
+                font-size: 1.5em;
+                padding: 4rem;
+
+                .full-logo {
+                    @include full-logo-size-ajust (1.3rem, #ffff);
+
+                    &:hover {
+                        @include swing-animation;
+                    }
+                }
+            }
+
+
+            img {
+                padding: 0rem 4rem 5rem 4rem;
+                border-radius: 0%;
+            }
+        }
+
+
+
+    }
+
+    .footer {
+        @include footer;
+    }
+}
+
+/*tablets*/
+@media screen and (min-width: 768px) {
+    body {
+        display: flex;
+        flex-direction: column;
+
+        .main--index {
+            .main__resumen--uno {
+                position: relative;
+
+                h2 {
+                    position: absolute;
+                    top: 50%;
+                    left: 18%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1;
+                    width: 20rem;
+                    text-align: center;
+                    color: white;
+
+                }
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    position: relative;
+                    overflow: hidden;
+                }
+            }
+
+            .main__resumen--dos {
+                font-family: $font-montserrat;
+                font-size: 1.3rem;
+            }
+        }
+    }
+}
+
+
+
+/* large devices*/
+@media screen and (min-width: 1024px) {
+    body {
+        .main--index {
+
+            .main__resumen--uno {
+                position: relative;
+
+                h2 {
+                    position: absolute;
+                    top: 50%;
+                    left: 18%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1;
+                    width: 30rem;
+                    text-align: center;
+                    color: white;
+
+                    span {
+                        display: block;
+                        font-size: 0.9em;
+                    }
+                }
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    position: relative;
+                    overflow: hidden;
+                }
+            }
+
+            .main__image--uno {
+                margin-bottom: 4rem;
+                height: 80vh;
+            }
+
+            .main__resumen--dos {
+                display: flex;
+                flex-direction: row;
+                padding: 2rem;
+                justify-content: center;
+                align-items: center;
+                font-family: $font-normal;
+
+
+                img {
+                    width: 50%;
+                    border-radius: 30%;
+                    padding: 0px;
+                    height: auto;
+                }
+            }
+
+            .main__resumen--tres {
+                background: linear-gradient(#d9e1e6, #6e99b3);
+
+                h4 {
+                    color: #fff;
+                }
+
+                img {
+                    padding: 0px;
+                }
+            }
+
+            .main__resumen--cuatro {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                justify-items: center;
+                align-items: center;
+                column-gap: 2rem;
+
+                img {
+                    width: 100%;
+                }
+
+            }
+        }
+
+    }
+}
