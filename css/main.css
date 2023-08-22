@@ -428,6 +428,9 @@ body .main__login {
               background-color: #ffff;
               color: #6E99B3; }
 
+body .login_alert {
+  font-family: "montserrat"; }
+
 body .footer {
   background: linear-gradient(#d9e1e6, #6e99b3);
   width: 100vw;
@@ -628,3 +631,72 @@ body .main__landing--footer {
   body .main__landing--footer {
     position: absolute;
     top: 100%; } }
+
+@font-face {
+  font-family: "ethnocentric-italic";
+  src: url(../font/ethnocentric.rg-italic.otf); }
+
+@font-face {
+  font-family: "ethnocentric";
+  src: url(../font/ethnocentricrg.otf); }
+
+@font-face {
+  font-family: "montserrat";
+  src: url(../../font/Montserrat-Bold.ttf); }
+
+/*estilos para celulares*/
+body {
+  background-color: #ffff;
+  height: 100vh;
+  /*estilos header*/ }
+  body .header_consultorio nav {
+    background: linear-gradient(to right, #e1e9ee, #6E99B3); }
+    body .header_consultorio nav .container-fluid .btn:hover {
+      background-color: #fff;
+      border-color: #5c7a92; }
+    body .header_consultorio nav .container-fluid .dropdown-item:hover {
+      background-color: #6E99B3; }
+    body .header_consultorio nav .container-fluid .navbar-toggler:hover {
+      background-color: #ffff; }
+    body .header_consultorio nav .container-fluid #navbarNav {
+      text-align: end; }
+      body .header_consultorio nav .container-fluid #navbarNav .navbar-nav .nav-item .nav-link {
+        font-family: "ethnocentric";
+        color: #fff; }
+        body .header_consultorio nav .container-fluid #navbarNav .navbar-nav .nav-item .nav-link:hover {
+          color: #5c7a92; }
+
+/* Estilos del calendario */
+.calendar {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center; }
+  .calendar .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; }
+  .calendar .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px; }
+    .calendar .days .day-of-week {
+      font-weight: normal;
+      color: #888;
+      font-weight: bold; }
+    .calendar .days .month-day {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      font-weight: bold; }
+    .calendar .days .empty-day {
+      border: none;
+      background-color: transparent; }
+    .calendar .days .current-day {
+      font-weight: bold;
+      background-color: #6E99B3;
+      color: white; }

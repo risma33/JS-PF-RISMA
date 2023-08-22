@@ -81,6 +81,10 @@ body {
         }
     }
 
+   .login_alert{
+    font-family: $font-montserrat;
+   }
+
     .footer {
         @include footer;
     }

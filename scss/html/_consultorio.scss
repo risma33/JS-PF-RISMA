@@ -1,0 +1,99 @@
+//import
+@import "../extra/fonts";
+@import "../extra/maps";
+@import "../extra/mixin";
+
+/*estilos para celulares*/
+body {
+    background-color: #ffff;
+    height: 100vh;
+
+    /*estilos header*/
+    .header_consultorio {
+        nav {
+            background: map-get($map: $background, $key: bg_wt-bl-hz);
+
+            .container-fluid {
+                .btn:hover {
+                    background-color: #fff;
+                    border-color: #5c7a92;
+                }
+
+                .dropdown-item:hover {
+                    background-color: #6E99B3;
+                }
+
+                .navbar-toggler:hover {
+                    background-color: #ffff;
+                }
+
+                #navbarNav {
+                    text-align: end;
+
+                    .navbar-nav {
+                        .nav-item {
+                            .nav-link {
+                                font-family: $font-normal;
+                                color: #fff;
+
+                                &:hover {
+                                    color: #5c7a92;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Estilos del calendario */
+.calendar {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+
+        .day-of-week {
+            font-weight: normal;
+            color: #888;
+            font-weight: bold;
+        }
+
+        .month-day {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .empty-day {
+            border: none;
+            background-color: transparent;
+        }
+
+        .current-day {
+
+            font-weight: bold;
+            background-color: #6E99B3;
+            color: white;
+        }
+    }
+}

@@ -10,18 +10,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const userLocalStorage = JSON.parse(localStorage.getItem ("usuario"))
     const loginFormG = document.querySelector ("#main__login__form");
     const input = document.querySelectorAll ("input");
-    const bienvenidaUsuarioRegistrado = nombre => {
-        loginFormG.innerHTML = `<h1 class='main__login--bienvendia'> Bienvenido ${nombre}</h1>`
-    };
-    const UsuarioNoRegistrado = () => {
-        loginFormG.innerHTML = `<h1 class='main__login-notregister'> No estas Registrado</h1>`
-    };
     const userLogin = {
         email: '',
         password: '',
     };
 
-    userLocalStorage && bienvenidaUsuarioRegistrado(userLocalStorage.nombre);
+    if (userLocalStorage) {
+        Swal.fire({
+            title: `<h1 class= "login_alert">¡Bienvenido Dr. ${userLocalStorage.apellido}!</h1>`,
+            timer: 2000,
+            showConfirmButton: false,
+            background: 'linear-gradient(#d9e1e6, #6e99b3)',
+            color: 'white'
+          }),
+        linkTo ("./landing.html", 1000)
+    }
 
     input.forEach((elemento)=>{
         elemento.addEventListener("input", ({target})=> {
@@ -39,23 +42,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    function linkTo(direccion) {
+    function linkTo(direccion, tiempo) {
         setTimeout(() => {
             window.location.href = direccion;
-        }, 3000);
+        }, tiempo);
     }
 
     loginFormG.addEventListener("submit", (event) => {
         event.preventDefault();
         const userfindG = findData(userLogin);
         if (userfindG !== undefined) {
-            bienvenidaUsuarioRegistrado(userfindG.nombre);
+            Swal.fire({
+              title: `<h1 class= "login_alert">¡Bienvenido Dr. ${userfindG.apellido}!</h1>`,
+              timer: 2000,
+              showConfirmButton: false,
+              background: 'linear-gradient(#d9e1e6, #6e99b3)',
+              color: 'white'
+            })
             localStorage.setItem("usuario", JSON.stringify(userfindG));
-            linkTo ("./landing.html")
+            linkTo ("./landing.html", 3000)
             
         } else {
-            UsuarioNoRegistrado();
-            console.log("usuario incorrecto");
+            Swal.fire({
+                title: `<h1 class= "login_alert">Usuario no registrado</h1>`,
+                timer: 2000,
+                showConfirmButton: false,
+                background: 'linear-gradient(#d9e1e6, #6e99b3)',
+                color: 'white'
+              })
         }
     });
 })
