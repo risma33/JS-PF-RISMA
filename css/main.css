@@ -648,55 +648,60 @@ body .main__landing--footer {
 body {
   background-color: #ffff;
   height: 100vh;
-  /*estilos header*/ }
-  body .header_consultorio nav {
+  /*estilos header*/
+  /* Estilos del calendario */ }
+  body .header_consultingRoom nav {
     background: linear-gradient(to right, #e1e9ee, #6E99B3); }
-    body .header_consultorio nav .container-fluid .btn:hover {
+    body .header_consultingRoom nav .container-fluid .btn:hover {
       background-color: #fff;
       border-color: #5c7a92; }
-    body .header_consultorio nav .container-fluid .dropdown-item:hover {
+    body .header_consultingRoom nav .container-fluid .dropdown-item:hover {
       background-color: #6E99B3; }
-    body .header_consultorio nav .container-fluid .navbar-toggler:hover {
+    body .header_consultingRoom nav .container-fluid .navbar-toggler:hover {
       background-color: #ffff; }
-    body .header_consultorio nav .container-fluid #navbarNav {
+    body .header_consultingRoom nav .container-fluid #navbarNav {
       text-align: end; }
-      body .header_consultorio nav .container-fluid #navbarNav .navbar-nav .nav-item .nav-link {
+      body .header_consultingRoom nav .container-fluid #navbarNav .navbar-nav .nav-item .nav-link {
         font-family: "ethnocentric";
         color: #fff; }
-        body .header_consultorio nav .container-fluid #navbarNav .navbar-nav .nav-item .nav-link:hover {
+        body .header_consultingRoom nav .container-fluid #navbarNav .navbar-nav .nav-item .nav-link:hover {
           color: #5c7a92; }
-
-/* Estilos del calendario */
-.calendar {
-  width: 300px;
-  margin: 0 auto;
-  text-align: center; }
-  .calendar .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px; }
-  .calendar .days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px; }
-    .calendar .days .day-of-week {
-      font-weight: normal;
-      color: #888;
-      font-weight: bold; }
-    .calendar .days .month-day {
-      width: 40px;
-      height: 40px;
+  body .office__calendar {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center; }
+    body .office__calendar .header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      border: 1px solid #ccc;
-      cursor: pointer;
-      font-weight: bold; }
-    .calendar .days .empty-day {
-      border: none;
-      background-color: transparent; }
-    .calendar .days .current-day {
-      font-weight: bold;
-      background-color: #6E99B3;
-      color: white; }
+      justify-content: space-between;
+      margin-bottom: 10px; }
+    body .office__calendar .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px; }
+      body .office__calendar .days .day-of-week {
+        font-weight: normal;
+        color: #888;
+        font-weight: bold; }
+      body .office__calendar .days .month-day {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        font-weight: bold; }
+      body .office__calendar .days .otherMonth-day {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        font-weight: bold; }
+      body .office__calendar .days .current-day {
+        font-weight: bold;
+        background-color: #6E99B3;
+        color: white; }

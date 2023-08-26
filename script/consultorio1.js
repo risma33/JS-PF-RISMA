@@ -1,20 +1,18 @@
-import data from "../data/usuariosRegistrados.json" assert {type: "json"};
-//import { findData } from "./fuciones";
+import data from "../data/doctorsRegister.json" assert {type: "json"};
+import { findData } from './fuciones.js';
+import { getSlots } from './fuciones.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     const userLocalStorage = JSON.parse(localStorage.getItem("usuario"));
-    console.log(userLocalStorage);
-    const agendaContenido = document.querySelector("#agendaContenido");
-    const tableDay = document.querySelector("#table-day")
+    const officeContent = document.querySelector("#office__content");
     const currentMonthHTML = document.querySelector("#currentMonth");
     const daysContainer = document.querySelector(".days");
-    const appointmentsList = document.querySelector("#appointmentsList");
     const prevMonth = document.querySelector("#prevMonth");
     const nextMonth = document.querySelector("#nextMonth")
 
-    let currentDate = new Date();
-    let currentMonth = currentDate.getMonth();
-    let currentYear = currentDate.getFullYear();
+    let currentDate = dayjs();
+    let currentMonth = currentDate.month();
+    let currentYear = currentDate.year();
 
     const userLogin = {
         nombre: userLocalStorage.nombre,
@@ -26,127 +24,141 @@ document.addEventListener("DOMContentLoaded", function () {
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
     ];
-    const consul_dayOfWeek = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+    const consul_dayOfWeek = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
     const userLog = findData(userLogin);
-    const dayOfWeekDoctor = userLog.horarios.map(item => item.dia);
-    console.log(dayOfWeekDoctor);
-    const row = document.createElement("tr");
+    const { horarios } = userLog
+    console.log(horarios);
+
 
     prevMonth.addEventListener("click", () => {
-        if (currentMonth === 0) {
-            currentYear--;
-            currentMonth = 11;
-        } else {
-            currentMonth--;
-        }
+        currentDate = currentDate.subtract(1, 'month');
+        currentMonth = currentDate.month();
+        currentYear = currentDate.year();
         calendar();
     });
     nextMonth.addEventListener("click", () => {
-        if (currentMonth === 11) {
-            currentYear++;
-            currentMonth = 0;
-        } else {
-            currentMonth++;
-        }
+        currentDate = currentDate.add(1, 'month');
+        currentMonth = currentDate.month();
+        currentYear = currentDate.year();
         calendar();
     });
 
-    //funcion que no logro importar. y la tengo que volver a colocar aca
-    function findData(criteriosBusqueda) {
-        return data.find((registro) => {
-            return Object.keys(criteriosBusqueda).every((key) => {
-                return registro[key] === criteriosBusqueda[key];
-            });
-        });
-    };
-
-        
-    function doctorCalendar() {
-        for (const doctorDay of dayOfWeekDoctor) {
-            const dayElement = document.createElement("th");
-            dayElement.classList.add("doctor-day-of-week");
-            dayElement.textContent = doctorDay;
-            tableDay.appendChild(dayElement);
+    function calendar() {
+        currentMonthHTML.textContent = `${currentDate.format('MMMM')} ${currentYear}`;
+        const firstDay = currentDate.startOf('month');
+        const lastDay = currentDate.endOf('month');
+        const firstDayOfWeek = firstDay.day();
+        const lastDayOfPrevMonth = firstDay.subtract(1, 'month').endOf('month');
+        const lasDayOfMonth = lastDay.date();
+        const daysInNextMonth = 6 * 7 - (firstDayOfWeek + lasDayOfMonth);
+        const consul_ShorDaysOfWeek = consul_dayOfWeek.map(day => day.slice(0, 3));
+    
+        daysContainer.innerHTML = "";
+    
+        for (const dayOfWeek of consul_ShorDaysOfWeek) {
+            const dayOfWeekE = document.createElement("div");
+            dayOfWeekE.classList.add("day-of-week");
+            dayOfWeekE.textContent = dayOfWeek;
+            daysContainer.appendChild(dayOfWeekE);
         }
         
-        dayOfWeekDoctor.forEach(day => {
-            const horario = userLog.horarios.find(item => item.dia === day);
-            const cell = document.createElement("td");
-
-            if (horario) {
-                const timeSlots = horario.turno.map(turno => {
-                    const ocupadoClass = turno.ocupado ? "Taken" : "";
-                    return `<div class="doctor-appoiment${ocupadoClass}">${turno.hora}</div>`;
-                }).join("");
-                cell.innerHTML = timeSlots;
+        
+        
+    
+        for (let i = 0; i < firstDayOfWeek; i++) {
+            const emptyDay = document.createElement("div");
+            emptyDay.classList.add("otherMonth-day");
+            const dayNumber = lastDayOfPrevMonth.date() - firstDayOfWeek + i + 1;
+            emptyDay.textContent = dayNumber;
+            daysContainer.appendChild(emptyDay);
+        }
+    
+        for (let day = 1; day <= lastDay.date(); day++) {
+            const dayOfMonth = document.createElement("div");
+            dayOfMonth.classList.add("month-day");
+            if (
+                day === currentDate.date() &&
+                currentMonth === currentDate.month() &&
+                currentYear === currentDate.year()
+            ) {
+                dayOfMonth.classList.add("current-day");
             }
-
-            row.appendChild(cell);
-        });
-        agendaContenido.appendChild(row)
-    };
-
-function calendar() {
-    currentMonthHTML.textContent = consul_months[currentMonth] + " " + currentYear;
-    const currentDate = new Date()
-    const firstDay = new Date(currentYear, currentMonth, 1);
-    const lastDay = new Date(currentYear, currentMonth + 1, 0);
-    // console.log(firstDay); 
-
-    daysContainer.innerHTML = "";
-
-    for (const dayOfWeek of consul_dayOfWeek) {
-        const dayOfWeekE = document.createElement("div");
-        dayOfWeekE.classList.add("day-of-week");
-        dayOfWeekE.textContent = dayOfWeek;
-        daysContainer.appendChild(dayOfWeekE);
-    }
-
-    const firstDayOfWeek = firstDay.getDay();
-
-    for (let i = 0; i < firstDayOfWeek; i++) {
-        const emptyDay = document.createElement("div");
-        emptyDay.classList.add("empty-day");
-        daysContainer.appendChild(emptyDay);
-    }
-
-    for (let day = 1; day <= lastDay.getDate(); day++) {
-        const dayOfMonth = document.createElement("div");
-        dayOfMonth.classList.add("month-day");
-        if (
-            day === currentDate.getDate() && 
-            currentMonth === currentDate.getMonth() && 
-            currentYear === currentDate.getFullYear() 
-        ) {
-            dayOfMonth.classList.add("current-day");
+            dayOfMonth.textContent = day;
+            daysContainer.appendChild(dayOfMonth);
+            dayOfMonth.addEventListener("click", () => {
+                const selectedDay = currentDate.date(day);
+                WeekAppointmentCalendar(selectedDay)
+            });
         }
-        dayOfMonth.textContent = day;
-        // dayOfMonth.addEventListener("click", () => showAppointments(currentYear, currentMonth, day));
-        daysContainer.appendChild(dayOfMonth);
+        for (let i = 1; i <= daysInNextMonth; i++) {
+            const emptyDay = document.createElement("div");
+            emptyDay.classList.add("otherMonth-day");
+            emptyDay.textContent = i;
+            daysContainer.appendChild(emptyDay);
+        }
     }
-}
+    
 
-// function showAppointments(year, month, day) {
-//     const selectedDate = new Date(year, month, day);
+    function WeekAppointmentCalendar(day) {
+        const weekStart = dayjs(day).startOf('week');
 
-//     // Simulated turnos, hasta que encuentre como traer los del medico.
-//     const appointments = [
-//         "Turno 1: 10:00 AM",
-//         "Turno 2: 2:00 PM",
-//         "Turno 3: 4:30 PM"
-//     ];
+        officeContent.innerHTML = "";
 
-//     appointmentsList.innerHTML = "";
-//     for (const appointment of appointments) {
-//         const appointmentItem = document.createElement("li");
-//         appointmentItem.classList.add("appointment");
-//         appointmentItem.textContent = appointment;
-//         appointmentsList.appendChild(appointmentItem);
-//     }
-// }
+        const table = document.createElement("table");
+        table.classList.add("office__week-table");
+        officeContent.appendChild(table);
+        const thead = document.createElement("thead")
+        thead.classList.add("office__week-table-header");
+        table.appendChild(thead);
 
+        const doctorDayConsulting = document.createElement("tr");
+        thead.appendChild(doctorDayConsulting);
 
-calendar();
-doctorCalendar();
+        const tbody = document.createElement("tbody")
+        thead.classList.add("office__week-table-body");
+        table.appendChild(tbody);
+
+        const doctorTimeDayConsulting = document.createElement("tr");
+        tbody.appendChild(doctorTimeDayConsulting);
+
+        const selectedWeekStartDay = weekStart.clone();
+
+        for (let i = 0; i < 7; i++) {
+            const currentDayWeek = selectedWeekStartDay.add(i, 'day');
+            const dayName = consul_dayOfWeek[currentDayWeek.day()];
+            const horarioInfo = userLog.horarios.find(info => info.dia === dayName)
+            
+            if (horarioInfo) {
+                const th = document.createElement("th");
+                th.classList.add("office__week-table-header-cell");
+                th.innerHTML = `<div>${currentDayWeek.format("DD")} </div>
+                <div>${currentDayWeek.format("MM")}</div>
+                <div id="dayNameLink">${dayName}</div> `;
+                doctorDayConsulting.appendChild(th);
+
+                const td = document.createElement("td");
+                doctorTimeDayConsulting.appendChild(td);
+                
+                const [startTime, endTime] = horarioInfo.intervalo;
+                const startTimeObj = dayjs(currentDayWeek).set('hour', parseInt(startTime.split(':')[0])).set('minute', parseInt(startTime.split(':')[1]));
+                const endTimeObj = dayjs(currentDayWeek).set('hour', parseInt(endTime.split(':')[0])).set('minute', parseInt(endTime.split(':')[1]));
+                const tiempoConsulta = horarioInfo.tiempoConsulta;
+                const appointmentTime = getSlots(startTimeObj, endTimeObj, tiempoConsulta);
+                
+                for (const slot of appointmentTime) {
+                    const divPrueba = document.createElement("div");
+                    divPrueba.classList.add("office__week-table-appintmentTime-cell");
+                    divPrueba.innerHTML = `<div class="appointmentTime">${slot.format("HH:mm")}</div>
+                     <div class="info"></div>
+                     <div id="patienInfo"></div> `;
+                    td.appendChild(divPrueba);
+
+                }
+            }
+        }
+    }
+
+    calendar();
+
 })

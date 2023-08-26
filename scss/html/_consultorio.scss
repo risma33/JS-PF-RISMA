@@ -9,7 +9,7 @@ body {
     height: 100vh;
 
     /*estilos header*/
-    .header_consultorio {
+    .header_consultingRoom {
         nav {
             background: map-get($map: $background, $key: bg_wt-bl-hz);
 
@@ -46,54 +46,60 @@ body {
             }
         }
     }
-}
 
+    /* Estilos del calendario */
+    .office__calendar {
+        width: 300px;
+        margin: 0 auto;
+        text-align: center;
 
-/* Estilos del calendario */
-.calendar {
-    width: 300px;
-    margin: 0 auto;
-    text-align: center;
-
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-
-    .days {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 5px;
-
-        .day-of-week {
-            font-weight: normal;
-            color: #888;
-            font-weight: bold;
-        }
-
-        .month-day {
-            width: 40px;
-            height: 40px;
+        .header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            font-weight: bold;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
 
-        .empty-day {
-            border: none;
-            background-color: transparent;
-        }
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
 
-        .current-day {
+            .day-of-week {
+                font-weight: normal;
+                color: #888;
+                font-weight: bold;
+            }
 
-            font-weight: bold;
-            background-color: #6E99B3;
-            color: white;
+            .month-day {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #ccc;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .otherMonth-day {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .current-day {
+
+                font-weight: bold;
+                background-color: #6E99B3;
+                color: white;
+            }
         }
     }
+
 }
