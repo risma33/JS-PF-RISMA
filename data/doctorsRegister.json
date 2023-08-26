@@ -4,10 +4,31 @@
     "email": "risma@gmail.com",
     "password": "1234",
     "horarios": [
-        { "dia": "Lunes", "intervalo": ["9:30", "13:00"] , "tiempoConsulta": 20 },
+        { "dia": "Lunes", "intervalo": [["9:30", "13:00"], ["14:00", "18:00"]] , "tiempoConsulta": 20 },
         { "dia": "Jueves", "intervalo": ["9:30", "14:00"], "tiempoConsulta": 20 },
-        { "dia": "Viernes", "intervalo": ["9:30", "13:00"], "tiempoConsulta": 20 }
-
+        { "dia": "Viernes", "intervalo": [["9:30", "13:00"], ["14:00", "18:00"]], "tiempoConsulta": 20 }
     ]
-}]
+},{
+    "nombre": "Martin",
+        "apellido": "Foncueva",
+        "email": "foncueva@gmail.com",
+        "password": "1234",
+        "horarios": [
+            { "dia": "Lunes", "intervalo": [["9:30", "12:00"], ["14:00", "18:00"]] , "tiempoConsulta": 20 },
+            { "dia": "Martes", "intervalo": [["9:30", "12:00"], ["14:00", "18:00"]] , "tiempoConsulta": 20 },
+            { "dia": "Jueves", "intervalo": ["14:30", "18:00"], "tiempoConsulta": 20 },
+            { "dia": "Viernes", "intervalo": ["9:30", "15:00"], "tiempoConsulta": 20 }
+        ]
+},{
+    "nombre": "Maximiliano",
+        "apellido": "Garrone",
+        "email": "garrone@gmail.com",
+        "password": "1234",
+        "horarios": [
+            { "dia": "Lunes", "intervalo": [["9:30", "12:00"], ["14:00", "18:00"]] , "tiempoConsulta": 20 },
+            { "dia": "Viernes", "intervalo": ["9:30", "12:00"], "tiempoConsulta": 20 }
+        ]
+}
+
+]
     

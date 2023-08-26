@@ -1,9 +1,6 @@
-//por alguna razon, en safari no corre el scrip y en google si.
-
-import data from "../data/usuariosRegistrados.json" assert {type: "json"};
-//import { findData } from "./fuciones";
-// import { linkTo } from "./fuciones";
-// linkTo ()
+import data from "../data/doctorsRegister.json" assert {type: "json"};
+import { findData } from './fuciones.js';
+import { linkTo } from './fuciones.js';
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -33,20 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     })
 
-    //no logre importar las funcion. deje el archivo de funciones por si podias ver el error
-    function findData(criteriosBusqueda) {
-        return data.find((registro) => {
-            return Object.keys(criteriosBusqueda).every((key) => {
-                return registro[key] === criteriosBusqueda[key];
-            });
-        });
-    };
-
-    function linkTo(direccion, tiempo) {
-        setTimeout(() => {
-            window.location.href = direccion;
-        }, tiempo);
-    }
 
     loginFormG.addEventListener("submit", (event) => {
         event.preventDefault();

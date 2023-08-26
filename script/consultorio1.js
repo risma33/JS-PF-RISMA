@@ -20,10 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         email: userLocalStorage.email,
     };
 
-    const consul_months = [
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ];
     const consul_dayOfWeek = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
     const userLog = findData(userLogin);
@@ -53,19 +49,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const lasDayOfMonth = lastDay.date();
         const daysInNextMonth = 6 * 7 - (firstDayOfWeek + lasDayOfMonth);
         const consul_ShorDaysOfWeek = consul_dayOfWeek.map(day => day.slice(0, 3));
-    
+
         daysContainer.innerHTML = "";
-    
+
         for (const dayOfWeek of consul_ShorDaysOfWeek) {
             const dayOfWeekE = document.createElement("div");
             dayOfWeekE.classList.add("day-of-week");
             dayOfWeekE.textContent = dayOfWeek;
             daysContainer.appendChild(dayOfWeekE);
         }
-        
-        
-        
-    
+
+
+
+
         for (let i = 0; i < firstDayOfWeek; i++) {
             const emptyDay = document.createElement("div");
             emptyDay.classList.add("otherMonth-day");
@@ -73,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             emptyDay.textContent = dayNumber;
             daysContainer.appendChild(emptyDay);
         }
-    
+
         for (let day = 1; day <= lastDay.date(); day++) {
             const dayOfMonth = document.createElement("div");
             dayOfMonth.classList.add("month-day");
@@ -98,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
             daysContainer.appendChild(emptyDay);
         }
     }
-    
+
 
     function WeekAppointmentCalendar(day) {
         const weekStart = dayjs(day).startOf('week');
@@ -128,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const currentDayWeek = selectedWeekStartDay.add(i, 'day');
             const dayName = consul_dayOfWeek[currentDayWeek.day()];
             const horarioInfo = userLog.horarios.find(info => info.dia === dayName)
-            
+
             if (horarioInfo) {
                 const th = document.createElement("th");
                 th.classList.add("office__week-table-header-cell");
@@ -139,21 +135,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const td = document.createElement("td");
                 doctorTimeDayConsulting.appendChild(td);
-                
-                const [startTime, endTime] = horarioInfo.intervalo;
-                const startTimeObj = dayjs(currentDayWeek).set('hour', parseInt(startTime.split(':')[0])).set('minute', parseInt(startTime.split(':')[1]));
-                const endTimeObj = dayjs(currentDayWeek).set('hour', parseInt(endTime.split(':')[0])).set('minute', parseInt(endTime.split(':')[1]));
-                const tiempoConsulta = horarioInfo.tiempoConsulta;
-                const appointmentTime = getSlots(startTimeObj, endTimeObj, tiempoConsulta);
-                
-                for (const slot of appointmentTime) {
-                    const divPrueba = document.createElement("div");
-                    divPrueba.classList.add("office__week-table-appintmentTime-cell");
-                    divPrueba.innerHTML = `<div class="appointmentTime">${slot.format("HH:mm")}</div>
+
+                const intervalPairs = Array.isArray(horarioInfo.intervalo[0]) ? horarioInfo.intervalo : [horarioInfo.intervalo];
+
+                for (const interval of intervalPairs) {
+                    const [startTime, endTime] = interval;
+                    const startTimeObj = dayjs(currentDayWeek).set('hour', parseInt(startTime.split(':')[0])).set('minute', parseInt(startTime.split(':')[1]));
+                    const endTimeObj = dayjs(currentDayWeek).set('hour', parseInt(endTime.split(':')[0])).set('minute', parseInt(endTime.split(':')[1]));
+                    const tiempoConsulta = horarioInfo.tiempoConsulta;
+                    const appointmentTime = getSlots(startTimeObj, endTimeObj, tiempoConsulta);
+
+                    // const [startTime, endTime] = horarioInfo.intervalo;
+                    // const startTimeObj = dayjs(currentDayWeek).set('hour', parseInt(startTime.split(':')[0])).set('minute', parseInt(startTime.split(':')[1]));
+                    // const endTimeObj = dayjs(currentDayWeek).set('hour', parseInt(endTime.split(':')[0])).set('minute', parseInt(endTime.split(':')[1]));
+                    // const tiempoConsulta = horarioInfo.tiempoConsulta;
+                    // const appointmentTime = getSlots(startTimeObj, endTimeObj, tiempoConsulta);
+
+                    for (const slot of appointmentTime) {
+                        const divPrueba = document.createElement("div");
+                        divPrueba.classList.add("office__week-table-appintmentTime-cell");
+                        divPrueba.innerHTML = `<div class="appointmentTime">${slot.format("HH:mm")}</div>
                      <div class="info"></div>
                      <div id="patienInfo"></div> `;
-                    td.appendChild(divPrueba);
+                        td.appendChild(divPrueba);
 
+                    }
                 }
             }
         }
