@@ -1,5 +1,6 @@
 import data from "../data/doctorsRegister.json" assert {type: "json"};
 
+
 export function findData(criteriosBusqueda) {
     return data.find((registro) => {
         return Object.keys(criteriosBusqueda).every((key) => {
@@ -8,13 +9,13 @@ export function findData(criteriosBusqueda) {
     });
 };
 
-export function linkTo(direccion) {
+export function linkTo(direccion, timer) {
     setTimeout(() => {
         window.location.href = direccion;
-    }, 3000);
+    }, timer);
 }
 
-export  function getSlots(startTime, endTime, interval) {
+export function getSlots(startTime, endTime, interval) {
     const slots = [];
     let currentSlot = startTime.clone();
 
@@ -22,6 +23,10 @@ export  function getSlots(startTime, endTime, interval) {
         slots.push(currentSlot.clone());
         currentSlot = currentSlot.add(interval, 'minute');
     }
-    
+
     return slots;
+};
+
+export function valueVSSearch(value, searchQuery) {
+    return value.toString().toLowerCase().includes(searchQuery.toLowerCase());
 }

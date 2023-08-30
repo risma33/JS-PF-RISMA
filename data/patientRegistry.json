@@ -1,0 +1,83 @@
+[
+    {
+        "dni": "12345678",
+        "nombre": "Juan Pérez",
+        "fecha_nacimiento": "1990-05-15",
+        "genero": "Masculino",
+        "telefono": "1166819756",
+        "correo": "juan@example.com",
+        "direccion": "Calle Principal 123",
+        "cobertura": "Seguro Médico A",
+        "numero_afiliado": "A123456",
+        "numero_historia_clinica": "HC001",
+        "historia_clinica": [
+            {
+                "fecha_atencion": "2023-08-27",
+                "evolucion": "Mejora en los síntomas, menor dolor abdominal.",
+                "diagnostico": "Gastritis leve."
+            },
+            {
+                "fecha_atencion": "2023-08-30",
+                "evolucion": "Persisten los síntomas, recomendada endoscopia.",
+                "diagnostico": "Posible úlcera gástrica."
+            }
+        ]
+    },
+    {
+        "dni": "23456789",
+        "nombre": "María García",
+        "fecha_nacimiento": "1993-10-20",
+        "genero": "Femenino",
+        "telefono": "987-654-3210",
+        "correo": "maria@example.com",
+        "direccion": "Avenida Secundaria 456",
+        "cobertura": "Seguro Médico B",
+        "numero_afiliado": "B987654",
+        "numero_historia_clinica": "HC002",
+        "historia_clinica": [
+            {
+                "fecha_atencion": "2023-09-01",
+                "evolucion": "Sin mejoría, se recomienda análisis adicionales.",
+                "diagnostico": "Posible infección respiratoria."
+            }
+        ]
+    },
+    {
+        "dni": "34567890",
+        "nombre": "Luis Rodríguez",
+        "fecha_nacimiento": "1980-02-10",
+        "genero": "Masculino",
+        "telefono": "555-123-4567",
+        "correo": "luis@example.com",
+        "direccion": "Plaza Central 789",
+        "cobertura": "Seguro Médico C",
+        "numero_afiliado": "C345678",
+        "numero_historia_clinica": "HC003",
+        "historia_clinica": [
+          {
+            "fecha_atencion": "2023-09-05",
+            "evolucion": "Síntomas de fatiga y dolores musculares.",
+            "diagnostico": "Posible infección viral."
+          }
+        ]
+      },
+      {
+        "dni": "45678901",
+        "nombre": "Ana Martínez",
+        "fecha_nacimiento": "1998-07-05",
+        "genero": "Femenino",
+        "telefono": "789-456-1230",
+        "correo": "ana@example.com",
+        "direccion": "Avenida Principal 567",
+        "cobertura": "Seguro Médico A",
+        "numero_afiliado": "A654321",
+        "numero_historia_clinica": "HC004",
+        "historia_clinica": [
+          {
+            "fecha_atencion": "2023-09-10",
+            "evolucion": "Fiebre alta y dolor de garganta.",
+            "diagnostico": "Posible faringitis."
+          }
+        ]
+      }
+]

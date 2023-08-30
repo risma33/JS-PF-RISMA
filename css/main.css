@@ -660,7 +660,7 @@ body {
     body .header_consultingRoom nav .container-fluid .navbar-toggler:hover {
       background-color: #ffff; }
     body .header_consultingRoom nav .container-fluid #navbarNav {
-      text-align: end; }
+      text-align: start; }
       body .header_consultingRoom nav .container-fluid #navbarNav .navbar-nav .nav-item .nav-link {
         font-family: "ethnocentric";
         color: #fff; }
@@ -692,6 +692,9 @@ body {
         border: 1px solid #ccc;
         cursor: pointer;
         font-weight: bold; }
+      body .office__calendar .days .selected-day {
+        font-weight: bold;
+        background-color: #e1e9ee; }
       body .office__calendar .days .otherMonth-day {
         width: 40px;
         height: 40px;
@@ -705,3 +708,21 @@ body {
         font-weight: bold;
         background-color: #6E99B3;
         color: white; }
+  body .closeSesion_alert {
+    font-family: "montserrat"; }
+  body .footer {
+    background: linear-gradient(#d9e1e6, #6e99b3);
+    width: 100vw;
+    padding: 1rem 4rem 1rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    body .footer .footer__tex {
+      font-size: 1em;
+      color: #ffff;
+      font-family: "ethnocentric";
+      text-align: center; }
+    body .footer .footer__img--redes img {
+      height: 20px;
+      width: auto; }

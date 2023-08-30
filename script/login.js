@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
               color: 'white'
             })
             localStorage.setItem("usuario", JSON.stringify(userfindG));
-            linkTo ("./landing.html", 3000)
+            linkTo ("./landing.html", 2000)
             
         } else {
             Swal.fire({
@@ -55,4 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
               })
         }
     });
+
+    
+
 })
