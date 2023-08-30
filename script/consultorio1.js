@@ -193,15 +193,16 @@ document.addEventListener("DOMContentLoaded", function () {
     navUserIconCloseSesion.addEventListener("click", (event) => {
         event.preventDefault();
         Swal.fire({
-            title: `<h1 class= "closeSesion_alert">¿Te vas?</h1>`,
-            // icon: 'question',
+            title: `<h1 class="closeSesion_alert">¿Te vas?</h1>`,
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: `<h5 class= "closeSesion_alert">¡Si. Hasta Pronto!</h5>`,
-            cancelButtonText: `<h5 class= "closeSesion_alert">Cancelar</h5>`,
+            confirmButtonColor: 'transparent',
+            cancelButtonColor: 'transparent',
+            confirmButtonText: `<h5 class="closeSesion_alert">¡Si. Hasta Pronto!</h5>`,
+            cancelButtonText: `<h5 class="closeSesion_alert">Cancelar</h5>`,
             background: 'linear-gradient(#d9e1e6, #6e99b3)',
             color: 'white',
+            returnFocus: true,
+            buttonsStyling: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({

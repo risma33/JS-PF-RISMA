@@ -109,6 +109,10 @@ body {
     .closeSesion_alert{
         font-family: $font-montserrat;
        }
+      
+       .no-focus-outline {
+        outline: none !important;
+       }
     .footer {
         @include footer;
     }
