@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const officeLinkDayCalendario = document.querySelector("#office__link_day_calendario");
     const officeLinkPacient = document.querySelector("#office__link_pacient")
     const navUserIconCloseSesion = document.querySelector("#nav__userIcon_closeSesion")
+    const consultorioNewPacientButton =document.querySelector("#consultorio__newPacient_Button")
 
     let currentDate = dayjs();
     let currentMonth = currentDate.month();
@@ -69,6 +70,124 @@ document.addEventListener("DOMContentLoaded", function () {
                 const newPacientButton = document.createElement("div");
                 newPacientButton.setAttribute("id", "consultorio__newPacient_Button");
                 listPacienteHeader.appendChild(newPacientButton)
+                newPacientButton.innerHTML = `<button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=#6e99b3 class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/></svg>
+                </button>`
+
+                newPacientButton.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Nuevo Paciente',
+                        html:
+                        `<div>
+                            <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
+                        </div>
+            
+                        <div>
+                            <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off required>
+                        </div>
+            
+                        <div>
+                            <input type="number" id="newPatien_inputDNI" placeholder="DNI" class="swal2-input" autocomplete="off required>
+                        </div>
+            
+                        <div>
+                            <select id="inputGender" class="swal2-select">
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+            
+                        <div>
+                            <input type="date" id="inputBirthdate" class="swal2-input" format="dd/MM/yyyy"required>
+                        </div>
+            
+                        <div class="newPacient__coberturaConteiner">
+                            <div class="newPacient__coberturaConteiner-header">
+                                <div class="coberturasTitle">Coberturas</div>
+                                <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="newPacient__coberturaConteiner-input">
+                                <div>
+                                    <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
+                                </div>
+                                <div>
+                                    <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="newPacient__emailConteiner">
+                            <div class="newPacient__emailConteiner-header">
+                                <div class="emailTitle">Emails</div>
+                                <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div>
+                                <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
+                            </div>
+                        </div>
+            
+                        <div class="newPacient_telefonoConteiner">
+                            <div class="newPacient__telefonoConteriner-Header">
+                                <div class="telefonoTitle">telefono</div>
+                                <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div>
+                                <input type="tel" name="telefono" id="newPacient_telefono" placeholder="telefono" class="swal2-input" autocomplete="off" required>
+                            </div>
+                        </div>
+            
+                        <div>
+                            <input type="text" name="direccion" id="newPacient_inputdireccion" placeholder="direccion" class="swal2-input" autocomplete="off">
+                        </div>
+            
+                        <div>
+                            <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
+                        </div>`,
+            
+                        inputAttributes: {
+                            autocapitalize: 'off'
+                        },
+                        showCancelButton: true,
+                        confirmButtonText: 'Guardar',
+                        showLoaderOnConfirm: true,
+                        preConfirm: (login) => {
+                            return fetch(`//api.github.com/users/${login}`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error(response.statusText)
+                                    }
+                                    return response.json()
+                                })
+                                .catch(error => {
+                                    Swal.showValidationMessage(
+                                        `Request failed: ${error}`
+                                    )
+                                })
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: `${result.value.login}'s avatar`,
+                                imageUrl: result.value.avatar_url
+                            })
+                        }
+                    })
+                })
 
                 const listPacientBody = document.createElement("div")
                 listPacientBody.classList.add("consultorio__listPacient_body")
@@ -189,6 +308,120 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         importPacienData()
     })
+    // consultorioNewPacientButton.addEventListener("click", (event) => {
+    //     event.preventDefault();
+    //     Swal.fire({
+    //         title: 'Nuevo Paciente',
+    //         html:
+    //         `<div>
+    //             <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
+    //         </div>
+
+    //         <div>
+    //             <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off required>
+    //         </div>
+
+    //         <div>
+    //             <input type="number" id="newPatien_inputDNI" placeholder="DNI" class="swal2-input" autocomplete="off required>
+    //         </div>
+
+    //         <div>
+    //             <select id="inputGender" class="swal2-select">
+    //                 <option value="Masculino">Masculino</option>
+    //                 <option value="Femenino">Femenino</option>
+    //             </select>
+    //         </div>
+
+    //         <div>
+    //             <input type="date" id="inputBirthdate" class="swal2-input" format="dd/MM/yyyy"required>
+    //         </div>
+
+    //         <div class="newPacient__coberturaConteiner">
+    //             <div class="newPacient__coberturaConteiner-header">
+    //                 <div class="coberturasTitle">Coberturas</div>
+    //                 <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+    //                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+    //                     </svg>
+    //                 </button>
+    //             </div>
+    //             <div class="newPacient__coberturaConteiner-input">
+    //                 <div>
+    //                     <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
+    //                 </div>
+    //                 <div>
+    //                     <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
+    //                 </div>
+    //             </div>
+    //         </div>
+
+    //         <div class="newPacient__emailConteiner">
+    //             <div class="newPacient__emailConteiner-header">
+    //                 <div class="emailTitle">Emails</div>
+    //                 <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+    //                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+    //                     </svg>
+    //                 </button>
+    //             </div>
+    //             <div>
+    //                 <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
+    //             </div>
+    //         </div>
+
+    //         <div class="newPacient_telefonoConteiner">
+    //             <div class="newPacient__telefonoConteriner-Header">
+    //                 <div class="telefonoTitle">telefono</div>
+    //                 <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+    //                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+    //                     </svg>
+    //                 </button>
+    //             </div>
+    //             <div>
+    //                 <input type="tel" name="telefono" id="newPacient_telefono" placeholder="telefono" class="swal2-input" autocomplete="off" required>
+    //             </div>
+    //         </div>
+
+    //         <div>
+    //             <input type="text" name="direccion" id="newPacient_inputdireccion" placeholder="direccion" class="swal2-input" autocomplete="off">
+    //         </div>
+
+    //         <div>
+    //             <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
+    //         </div>`,
+
+    //         inputAttributes: {
+    //             autocapitalize: 'off'
+    //         },
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Look up',
+    //         showLoaderOnConfirm: true,
+    //         preConfirm: (login) => {
+    //             return fetch(`//api.github.com/users/${login}`)
+    //                 .then(response => {
+    //                     if (!response.ok) {
+    //                         throw new Error(response.statusText)
+    //                     }
+    //                     return response.json()
+    //                 })
+    //                 .catch(error => {
+    //                     Swal.showValidationMessage(
+    //                         `Request failed: ${error}`
+    //                     )
+    //                 })
+    //         },
+    //         allowOutsideClick: () => !Swal.isLoading()
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             Swal.fire({
+    //                 title: `${result.value.login}'s avatar`,
+    //                 imageUrl: result.value.avatar_url
+    //             })
+    //         }
+    //     })
+    // })
+
 
     navUserIconCloseSesion.addEventListener("click", (event) => {
         event.preventDefault();
