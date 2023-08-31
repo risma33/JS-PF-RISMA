@@ -30,3 +30,20 @@ export function getSlots(startTime, endTime, interval) {
 export function valueVSSearch(value, searchQuery) {
     return value.toString().toLowerCase().includes(searchQuery.toLowerCase());
 }
+
+export function calcularEdad(fechaNacimiento) {
+    const fechaNacimientoDate = dayjs(fechaNacimiento);
+    const fechaActual = dayjs();
+    
+    const edad = fechaActual.diff(fechaNacimientoDate, 'year');
+    
+    const cumpleaniosEsteAnio = fechaNacimientoDate.month() < fechaActual.month() ||
+                                (fechaNacimientoDate.month() === fechaActual.month() && fechaNacimientoDate.date() <= fechaActual.date());
+    
+    if (!cumpleaniosEsteAnio) {
+        edad--;
+    }
+    
+    return edad;
+}
+

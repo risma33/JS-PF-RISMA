@@ -3,6 +3,7 @@ import { findData } from './fuciones.js';
 import { getSlots } from './fuciones.js';
 import { linkTo } from './fuciones.js';
 import { valueVSSearch } from './fuciones.js';
+import { calcularEdad } from './fuciones.js';
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -89,18 +90,21 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
             
                         <div>
-                            <input type="number" id="newPatien_inputDNI" placeholder="DNI" class="swal2-input" autocomplete="off required>
+                            <input type="number" name="dni" id="newPatien_inputDNI" placeholder="DNI" class="swal2-input" autocomplete="off required>
                         </div>
             
                         <div>
-                            <select id="inputGender" class="swal2-select">
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                            </select>
+                        <label class="form-label" for="gender">Género</label>
+                            <select id="newPatien_inputGenero" name="genero" class="form-select ">
+                                <option value="">Seleccionar</option>
+                                <option value="female">Mujer</option>
+                                <option value="male">Hombre</option>
+                            </select>  
                         </div>
             
                         <div>
-                            <input type="date" id="inputBirthdate" class="swal2-input" format="dd/MM/yyyy"required>
+                            <label class="form-label " for="inputBirthdate">Fecha de nacimiento</label>
+                            <input type="date" name="fecha_nacimiento"id="newPatien_inputBirthdate" class="swal2-input" required>
                         </div>
             
                         <div class="newPacient__coberturaConteiner">
@@ -163,8 +167,24 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         showCancelButton: true,
                         confirmButtonText: 'Guardar',
+                        confirmButtonColor: '#6e99b3',
                         showLoaderOnConfirm: true,
-                        preConfirm: (login) => {
+                        preConfirm: () => {
+                            const firstName = document.getElementById("newPatien_inputName").value;
+                            const lastName = document.getElementById("newPatien_inputLastName").value;
+                            const dni = document.getElementById("newPatien_inputDNI").value;
+                            const genero = document.getElementById("newPatien_inputGenero").value;
+                            const fechaNacimiento = document.getElementById("newPatien_inputBirthdate").value;
+                            const cobertura = document.getElementById("newPatien_inputCobertura").value;
+                            const numeroAfiliado = document.getElementById("newPatien_inputNumeroAfiliado").value;
+                            const email = document.getElementById("newPacient_inputEmail").value;
+                            const telefono = document.getElementById("newPacient_telefono").value;
+                            const direccion = document.getElementById("newPacient_inputdireccion").value;
+                            const notas = document.getElementById("newPacient_inputNotas").value;
+                            const edad = calcularEdad(fechaNacimiento)
+
+                            return {firstName, lastName, dni, genero, fechaNacimiento, cobertura, numeroAfiliado, email, telefono, direccion, notas, edad}
+
                             return fetch(`//api.github.com/users/${login}`)
                                 .then(response => {
                                     if (!response.ok) {
