@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const officeLinkDayCalendario = document.querySelector("#office__link_day_calendario");
     const officeLinkPacient = document.querySelector("#office__link_pacient")
     const navUserIconCloseSesion = document.querySelector("#nav__userIcon_closeSesion")
-    const consultorioNewPacientButton =document.querySelector("#consultorio__newPacient_Button")
+    const navNewPacientButton= document.querySelector("#consultorio__navNewPacient_Button")
 
     let currentDate = dayjs();
     let currentMonth = currentDate.month();
@@ -48,6 +48,152 @@ document.addEventListener("DOMContentLoaded", function () {
         calendar(dayAppointmentCalendar);
 
     })
+
+    navNewPacientButton.addEventListener("click", async (event) => {
+        event.preventDefault();
+        try {
+            const { value: newPacientValues } = await Swal.fire({
+                title: 'Nuevo Paciente',
+                html:
+                    `<div>
+                        <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
+                    </div>
+
+                    <div>
+                        <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off" required>
+                    </div>
+                    <div>
+                        <input type="number" name="dni" id="newPatien_inputdni" placeholder="DNI" class="swal2-input" autocomplete="off" required>
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="gender">Género</label>
+                        <select id="newPatien_inputGenero" name="genero" class="form-select ">
+                            <option value="">Seleccionar</option>
+                            <option value="female">Mujer</option>
+                            <option value="male">Hombre</option>
+                        </select>  
+                    </div>
+
+            <div>
+                <label class="form-label " for="inputBirthdate">Fecha de nacimiento</label>
+                <input type="date" name="fecha_nacimiento"id="newPatien_inputBirthdate" class="swal2-input" required>
+            </div>
+
+            <div class="newPacient__coberturaConteiner">
+                <div class="newPacient__coberturaConteiner-header">
+                    <div class="coberturasTitle">Coberturas</div>
+                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="newPacient__coberturaConteiner-input">
+                    <div>
+                        <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
+                    </div>
+                    <div>
+                        <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="newPacient__emailConteiner">
+                <div class="newPacient__emailConteiner-header">
+                    <div class="emailTitle">Emails</div>
+                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div>
+                    <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="newPacient_telefonoConteiner">
+                <div class="newPacient__telefonoConteriner-Header">
+                    <div class="telefonoTitle">telefono</div>
+                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div>
+                    <input type="tel" name="telefono" id="newPacient_telefono" placeholder="telefono" class="swal2-input" autocomplete="off" required>
+                </div>
+            </div>
+
+            <div>
+                <input type="text" name="direccion" id="newPacient_inputdireccion" placeholder="direccion" class="swal2-input" autocomplete="off">
+            </div>
+
+            <div>
+                <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
+                    </div>`,
+
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Guardar',
+                confirmButtonColor: '#6e99b3',
+                showLoaderOnConfirm: true,
+                allowOutsideClick: () => !Swal.isLoading(),
+
+                preConfirm: async () => {
+                    const firstName = document.getElementById("newPatien_inputName").value;
+                    const lastName = document.getElementById("newPatien_inputLastName").value;
+                    const dni = document.getElementById("newPatien_inputdni").value;
+                    const genero = document.getElementById("newPatien_inputGenero").value;
+                    const fecha_nacimiento = document.getElementById("newPatien_inputBirthdate").value;
+                    const cobertura = document.getElementById("newPatien_inputCobertura").value;
+                    const numero_afiliado = document.getElementById("newPatien_inputNumeroAfiliado").value;
+                    const email = document.getElementById("newPacient_inputEmail").value;
+                    const telefono = document.getElementById("newPacient_telefono").value;
+                    const direccion = document.getElementById("newPacient_inputdireccion").value;
+                    const notas = document.getElementById("newPacient_inputNotas").value;
+                    let edad = calcularEdad(fecha_nacimiento)
+                    const nombre = firstName + " " + lastName;
+                    const numero_historia_clinica = Math.random() * 100000000000000
+                    const historia_clinica = ""
+
+                    const newPacient = { dni, nombre, fecha_nacimiento, edad, genero, telefono, email, direccion, cobertura, numero_afiliado, notas, numero_historia_clinica, historia_clinica }
+                    console.log(newPacient);
+
+                    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                        method: 'POST',
+                        body: JSON.stringify(newPacient),
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8',
+                        }
+                    });
+                    
+
+                    if (!response.ok) {
+                        throw new Error(response.statusText)
+                    };                               
+                },
+            });
+            if (newPacientValues.isConfirmed) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Paciente guardado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            };
+        } catch (error) {
+            Swal.showValidationMessage(
+                `Request failed: ${error}`
+            )
+        }
+    })
+
     officeLinkPacient.addEventListener("click", (event) => {
         main.innerHTML = ""
         async function importPacienData() {
@@ -76,31 +222,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/></svg>
                 </button>`
 
-                newPacientButton.addEventListener("click", (event) => {
+                newPacientButton.addEventListener("click", async (event) => {
                     event.preventDefault();
-                    Swal.fire({
-                        title: 'Nuevo Paciente',
-                        html:
-                        `<div>
-                            <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
-                        </div>
+                    try {
+                        const { value: newPacientValues } = await Swal.fire({
+                            title: 'Nuevo Paciente',
+                            html:
+                                `<div>
+                                    <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
+                                </div>
             
-                        <div>
-                            <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off required>
-                        </div>
-            
-                        <div>
-                            <input type="number" name="dni" id="newPatien_inputDNI" placeholder="DNI" class="swal2-input" autocomplete="off required>
-                        </div>
-            
-                        <div>
-                        <label class="form-label" for="gender">Género</label>
-                            <select id="newPatien_inputGenero" name="genero" class="form-select ">
-                                <option value="">Seleccionar</option>
-                                <option value="female">Mujer</option>
-                                <option value="male">Hombre</option>
-                            </select>  
-                        </div>
+                                <div>
+                                    <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off" required>
+                                </div>
+                                <div>
+                                    <input type="number" name="dni" id="newPatien_inputdni" placeholder="DNI" class="swal2-input" autocomplete="off" required>
+                                </div>
+
+                                <div>
+                                    <label class="form-label" for="gender">Género</label>
+                                    <select id="newPatien_inputGenero" name="genero" class="form-select ">
+                                        <option value="">Seleccionar</option>
+                                        <option value="female">Mujer</option>
+                                        <option value="male">Hombre</option>
+                                    </select>  
+                                </div>
             
                         <div>
                             <label class="form-label " for="inputBirthdate">Fecha de nacimiento</label>
@@ -160,54 +306,67 @@ document.addEventListener("DOMContentLoaded", function () {
             
                         <div>
                             <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
-                        </div>`,
-            
-                        inputAttributes: {
-                            autocapitalize: 'off'
-                        },
-                        showCancelButton: true,
-                        confirmButtonText: 'Guardar',
-                        confirmButtonColor: '#6e99b3',
-                        showLoaderOnConfirm: true,
-                        preConfirm: () => {
-                            const firstName = document.getElementById("newPatien_inputName").value;
-                            const lastName = document.getElementById("newPatien_inputLastName").value;
-                            const dni = document.getElementById("newPatien_inputDNI").value;
-                            const genero = document.getElementById("newPatien_inputGenero").value;
-                            const fechaNacimiento = document.getElementById("newPatien_inputBirthdate").value;
-                            const cobertura = document.getElementById("newPatien_inputCobertura").value;
-                            const numeroAfiliado = document.getElementById("newPatien_inputNumeroAfiliado").value;
-                            const email = document.getElementById("newPacient_inputEmail").value;
-                            const telefono = document.getElementById("newPacient_telefono").value;
-                            const direccion = document.getElementById("newPacient_inputdireccion").value;
-                            const notas = document.getElementById("newPacient_inputNotas").value;
-                            const edad = calcularEdad(fechaNacimiento)
+                                </div>`,
 
-                            return {firstName, lastName, dni, genero, fechaNacimiento, cobertura, numeroAfiliado, email, telefono, direccion, notas, edad}
+                            inputAttributes: {
+                                autocapitalize: 'off'
+                            },
+                            showCancelButton: true,
+                            confirmButtonText: 'Guardar',
+                            confirmButtonColor: '#6e99b3',
+                            showLoaderOnConfirm: true,
+                            allowOutsideClick: () => !Swal.isLoading(),
 
-                            return fetch(`//api.github.com/users/${login}`)
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error(response.statusText)
+                            preConfirm: async () => {
+                                const firstName = document.getElementById("newPatien_inputName").value;
+                                const lastName = document.getElementById("newPatien_inputLastName").value;
+                                const dni = document.getElementById("newPatien_inputdni").value;
+                                const genero = document.getElementById("newPatien_inputGenero").value;
+                                const fecha_nacimiento = document.getElementById("newPatien_inputBirthdate").value;
+                                const cobertura = document.getElementById("newPatien_inputCobertura").value;
+                                const numero_afiliado = document.getElementById("newPatien_inputNumeroAfiliado").value;
+                                const email = document.getElementById("newPacient_inputEmail").value;
+                                const telefono = document.getElementById("newPacient_telefono").value;
+                                const direccion = document.getElementById("newPacient_inputdireccion").value;
+                                const notas = document.getElementById("newPacient_inputNotas").value;
+                                let edad = calcularEdad(fecha_nacimiento)
+                                const nombre = firstName + " " + lastName;
+                                const numero_historia_clinica = Math.random() * 100000000000000
+                                const historia_clinica = ""
+
+                                const newPacient = { dni, nombre, fecha_nacimiento, edad, genero, telefono, email, direccion, cobertura, numero_afiliado, notas, numero_historia_clinica, historia_clinica }
+                                console.log(newPacient);
+
+                                const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                                    method: 'POST',
+                                    body: JSON.stringify(newPacient),
+                                    headers: {
+                                        'Content-type': 'application/json; charset=UTF-8',
                                     }
-                                    return response.json()
-                                })
-                                .catch(error => {
-                                    Swal.showValidationMessage(
-                                        `Request failed: ${error}`
-                                    )
-                                })
-                        },
-                        allowOutsideClick: () => !Swal.isLoading()
-                    }).then((result) => {
-                        if (result.isConfirmed) {
+                                });
+                                
+
+                                if (!response.ok) {
+                                    throw new Error(response.statusText)
+                                };                               
+                            },
+                        });
+                        if (newPacientValues.isConfirmed) {
                             Swal.fire({
-                                title: `${result.value.login}'s avatar`,
-                                imageUrl: result.value.avatar_url
-                            })
-                        }
-                    })
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Paciente guardado correctamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                        };
+                    } catch (error) {
+                        Swal.showValidationMessage(
+                            `Request failed: ${error}`
+                        )
+                    }
                 })
+
 
                 const listPacientBody = document.createElement("div")
                 listPacientBody.classList.add("consultorio__listPacient_body")
@@ -328,119 +487,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         importPacienData()
     })
-    // consultorioNewPacientButton.addEventListener("click", (event) => {
-    //     event.preventDefault();
-    //     Swal.fire({
-    //         title: 'Nuevo Paciente',
-    //         html:
-    //         `<div>
-    //             <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
-    //         </div>
-
-    //         <div>
-    //             <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off required>
-    //         </div>
-
-    //         <div>
-    //             <input type="number" id="newPatien_inputDNI" placeholder="DNI" class="swal2-input" autocomplete="off required>
-    //         </div>
-
-    //         <div>
-    //             <select id="inputGender" class="swal2-select">
-    //                 <option value="Masculino">Masculino</option>
-    //                 <option value="Femenino">Femenino</option>
-    //             </select>
-    //         </div>
-
-    //         <div>
-    //             <input type="date" id="inputBirthdate" class="swal2-input" format="dd/MM/yyyy"required>
-    //         </div>
-
-    //         <div class="newPacient__coberturaConteiner">
-    //             <div class="newPacient__coberturaConteiner-header">
-    //                 <div class="coberturasTitle">Coberturas</div>
-    //                 <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-    //                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-    //                     </svg>
-    //                 </button>
-    //             </div>
-    //             <div class="newPacient__coberturaConteiner-input">
-    //                 <div>
-    //                     <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
-    //                 </div>
-    //                 <div>
-    //                     <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
-    //                 </div>
-    //             </div>
-    //         </div>
-
-    //         <div class="newPacient__emailConteiner">
-    //             <div class="newPacient__emailConteiner-header">
-    //                 <div class="emailTitle">Emails</div>
-    //                 <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-    //                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-    //                     </svg>
-    //                 </button>
-    //             </div>
-    //             <div>
-    //                 <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
-    //             </div>
-    //         </div>
-
-    //         <div class="newPacient_telefonoConteiner">
-    //             <div class="newPacient__telefonoConteriner-Header">
-    //                 <div class="telefonoTitle">telefono</div>
-    //                 <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    //                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-    //                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-    //                     </svg>
-    //                 </button>
-    //             </div>
-    //             <div>
-    //                 <input type="tel" name="telefono" id="newPacient_telefono" placeholder="telefono" class="swal2-input" autocomplete="off" required>
-    //             </div>
-    //         </div>
-
-    //         <div>
-    //             <input type="text" name="direccion" id="newPacient_inputdireccion" placeholder="direccion" class="swal2-input" autocomplete="off">
-    //         </div>
-
-    //         <div>
-    //             <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
-    //         </div>`,
-
-    //         inputAttributes: {
-    //             autocapitalize: 'off'
-    //         },
-    //         showCancelButton: true,
-    //         confirmButtonText: 'Look up',
-    //         showLoaderOnConfirm: true,
-    //         preConfirm: (login) => {
-    //             return fetch(`//api.github.com/users/${login}`)
-    //                 .then(response => {
-    //                     if (!response.ok) {
-    //                         throw new Error(response.statusText)
-    //                     }
-    //                     return response.json()
-    //                 })
-    //                 .catch(error => {
-    //                     Swal.showValidationMessage(
-    //                         `Request failed: ${error}`
-    //                     )
-    //                 })
-    //         },
-    //         allowOutsideClick: () => !Swal.isLoading()
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             Swal.fire({
-    //                 title: `${result.value.login}'s avatar`,
-    //                 imageUrl: result.value.avatar_url
-    //             })
-    //         }
-    //     })
-    // })
 
 
     navUserIconCloseSesion.addEventListener("click", (event) => {

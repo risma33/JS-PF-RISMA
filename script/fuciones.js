@@ -34,16 +34,15 @@ export function valueVSSearch(value, searchQuery) {
 export function calcularEdad(fechaNacimiento) {
     const fechaNacimientoDate = dayjs(fechaNacimiento);
     const fechaActual = dayjs();
-    
-    const edad = fechaActual.diff(fechaNacimientoDate, 'year');
+    let edadCalculada = fechaActual.diff(fechaNacimientoDate, 'year');
     
     const cumpleaniosEsteAnio = fechaNacimientoDate.month() < fechaActual.month() ||
                                 (fechaNacimientoDate.month() === fechaActual.month() && fechaNacimientoDate.date() <= fechaActual.date());
     
     if (!cumpleaniosEsteAnio) {
-        edad--;
+        edadCalculada--;
     }
     
-    return edad;
+    return edadCalculada;
 }
 

@@ -1,43 +1,42 @@
-document.querySelector("#consultorio__newPacient_Button").addEventListener("click", (event) => {
+document.querySelector("#consultorio__newPacient_Button").addEventListener("click", async (event) => {
     event.preventDefault();
 
-    Swal.fire({
+    const { value: formValues } = await Swal.fire({
         title: 'Nuevo Paciente',
         html: `
             <input type="text" id="inputName" placeholder="Nombre" class="swal2-input">
             <input type="text" id="inputAge" placeholder="Edad" class="swal2-input">
             <!-- Agrega más campos de entrada según tus necesidades -->
         `,
-        showCancelButton: true,
-        confirmButtonText: 'Agregar Paciente',
-        preConfirm: () => {
+        focusConfirm: false,
+        preConfirm: async () => {
             const name = document.getElementById('inputName').value;
             const age = document.getElementById('inputAge').value;
             // Obtén los valores de otros campos de entrada aquí
 
+            // Realizar una petición al servidor para agregar los datos
+            const response = await fetch('URL_DEL_ENDPOINT', {
+                method: 'POST',
+                body: JSON.stringify({ name, age }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al agregar el paciente');
+            }
+
             return { name, age };
         }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const { name, age } = result.value;
-
-            // Agregar la lógica para agregar el paciente a tu patientRegistry
-            // Por ejemplo, puedes tener un objeto paciente y luego agregarlo a un array
-
-            const newPatient = {
-                name: name,
-                age: age
-                // Agrega más propiedades según tus campos de entrada
-            };
-
-            // Aquí puedes agregar newPatient a tu patientRegistry
-            // patientRegistry.push(newPatient);
-
-            Swal.fire({
-                title: 'Paciente Agregado',
-                text: `Nombre: ${name}, Edad: ${age}`,
-                icon: 'success'
-            });
-        }
     });
+
+    if (formValues) {
+        // Aquí puedes manejar el resultado de agregar el paciente si es necesario
+        Swal.fire({
+            title: 'Paciente Agregado',
+            text: `Nombre: ${formValues.name}, Edad: ${formValues.age}`,
+            icon: 'success'
+        });
+    }
 });
