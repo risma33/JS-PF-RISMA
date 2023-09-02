@@ -1,4 +1,4 @@
-import data from "../data/doctorsRegister.json" assert {type: "json"};
+import data from "../server/data/doctorsRegister.json" assert {type: "json"};
 
 
 export function findData(criteriosBusqueda) {

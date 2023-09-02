@@ -1,4 +1,4 @@
-import data from "../data/doctorsRegister.json" assert {type: "json"};
+import data from "../server/data/doctorsRegister.json" assert {type: "json"};
 import { findData } from './fuciones.js';
 import { getSlots } from './fuciones.js';
 import { linkTo } from './fuciones.js';
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const officeLinkDayCalendario = document.querySelector("#office__link_day_calendario");
     const officeLinkPacient = document.querySelector("#office__link_pacient")
     const navUserIconCloseSesion = document.querySelector("#nav__userIcon_closeSesion")
-    const navNewPacientButton= document.querySelector("#consultorio__navNewPacient_Button")
+    const navNewPacientButton = document.querySelector("#consultorio__navNewPacient_Button")
 
     let currentDate = dayjs();
     let currentMonth = currentDate.month();
@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const userLog = findData(userLogin);
 
     let currentView = "day"
-
 
 
     //              Eventos
@@ -162,31 +161,31 @@ document.addEventListener("DOMContentLoaded", function () {
                     const historia_clinica = ""
 
                     const newPacient = { dni, nombre, fecha_nacimiento, edad, genero, telefono, email, direccion, cobertura, numero_afiliado, notas, numero_historia_clinica, historia_clinica }
-                    console.log(newPacient);
 
-                    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+
+
+                    const response = await fetch('http://localhost:3002/updateNewPacient', {
                         method: 'POST',
                         body: JSON.stringify(newPacient),
                         headers: {
                             'Content-type': 'application/json; charset=UTF-8',
                         }
                     });
-                    
 
-                    if (!response.ok) {
-                        throw new Error(response.statusText)
-                    };                               
+                    if (response.ok) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Paciente guardado correctamente',
+                            timer: 10000
+                        })
+                    } else {
+                        throw new Error(response.statusText);
+                    }
+
                 },
             });
-            if (newPacientValues.isConfirmed) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Paciente guardado correctamente',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            };
+
         } catch (error) {
             Swal.showValidationMessage(
                 `Request failed: ${error}`
@@ -198,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
         main.innerHTML = ""
         async function importPacienData() {
             try {
-                const response = await fetch('../data/patientRegistry.json');
+                const response = await fetch('../server/data/patientRegistry.json');
                 const pacientData = await response.json();
 
                 const listPacientConteiner = document.createElement("div");
@@ -222,6 +221,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/></svg>
                 </button>`
 
+
+
                 newPacientButton.addEventListener("click", async (event) => {
                     event.preventDefault();
                     try {
@@ -229,84 +230,84 @@ document.addEventListener("DOMContentLoaded", function () {
                             title: 'Nuevo Paciente',
                             html:
                                 `<div>
-                                    <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
-                                </div>
-            
-                                <div>
-                                    <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off" required>
-                                </div>
-                                <div>
-                                    <input type="number" name="dni" id="newPatien_inputdni" placeholder="DNI" class="swal2-input" autocomplete="off" required>
-                                </div>
-
-                                <div>
-                                    <label class="form-label" for="gender">Género</label>
-                                    <select id="newPatien_inputGenero" name="genero" class="form-select ">
-                                        <option value="">Seleccionar</option>
-                                        <option value="female">Mujer</option>
-                                        <option value="male">Hombre</option>
-                                    </select>  
-                                </div>
-            
-                        <div>
-                            <label class="form-label " for="inputBirthdate">Fecha de nacimiento</label>
-                            <input type="date" name="fecha_nacimiento"id="newPatien_inputBirthdate" class="swal2-input" required>
-                        </div>
-            
-                        <div class="newPacient__coberturaConteiner">
-                            <div class="newPacient__coberturaConteiner-header">
-                                <div class="coberturasTitle">Coberturas</div>
-                                <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-                                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="newPacient__coberturaConteiner-input">
-                                <div>
-                                    <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
-                                </div>
-                                <div>
-                                    <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="newPacient__emailConteiner">
-                            <div class="newPacient__emailConteiner-header">
-                                <div class="emailTitle">Emails</div>
-                                <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-                                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-                                    </svg>
-                                </button>
-                            </div>
+                                        <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
+                                    </div>
+                
+                                    <div>
+                                        <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off" required>
+                                    </div>
+                                    <div>
+                                        <input type="number" name="dni" id="newPatien_inputdni" placeholder="DNI" class="swal2-input" autocomplete="off" required>
+                                    </div>
+                
+                                    <div>
+                                        <label class="form-label" for="gender">Género</label>
+                                        <select id="newPatien_inputGenero" name="genero" class="form-select ">
+                                            <option value="">Seleccionar</option>
+                                            <option value="female">Mujer</option>
+                                            <option value="male">Hombre</option>
+                                        </select>  
+                                    </div>
+                
                             <div>
-                                <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
+                                <label class="form-label " for="inputBirthdate">Fecha de nacimiento</label>
+                                <input type="date" name="fecha_nacimiento"id="newPatien_inputBirthdate" class="swal2-input" required>
                             </div>
-                        </div>
-            
-                        <div class="newPacient_telefonoConteiner">
-                            <div class="newPacient__telefonoConteriner-Header">
-                                <div class="telefonoTitle">telefono</div>
-                                <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-                                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-                                    </svg>
-                                </button>
+                
+                            <div class="newPacient__coberturaConteiner">
+                                <div class="newPacient__coberturaConteiner-header">
+                                    <div class="coberturasTitle">Coberturas</div>
+                                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="newPacient__coberturaConteiner-input">
+                                    <div>
+                                        <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
+                                    </div>
+                                </div>
                             </div>
+                
+                            <div class="newPacient__emailConteiner">
+                                <div class="newPacient__emailConteiner-header">
+                                    <div class="emailTitle">Emails</div>
+                                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>
+                                    <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
+                                </div>
+                            </div>
+                
+                            <div class="newPacient_telefonoConteiner">
+                                <div class="newPacient__telefonoConteriner-Header">
+                                    <div class="telefonoTitle">telefono</div>
+                                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>
+                                    <input type="tel" name="telefono" id="newPacient_telefono" placeholder="telefono" class="swal2-input" autocomplete="off" required>
+                                </div>
+                            </div>
+                
                             <div>
-                                <input type="tel" name="telefono" id="newPacient_telefono" placeholder="telefono" class="swal2-input" autocomplete="off" required>
+                                <input type="text" name="direccion" id="newPacient_inputdireccion" placeholder="direccion" class="swal2-input" autocomplete="off">
                             </div>
-                        </div>
-            
-                        <div>
-                            <input type="text" name="direccion" id="newPacient_inputdireccion" placeholder="direccion" class="swal2-input" autocomplete="off">
-                        </div>
-            
-                        <div>
-                            <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
-                                </div>`,
+                
+                            <div>
+                                <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
+                                    </div>`,
 
                             inputAttributes: {
                                 autocapitalize: 'off'
@@ -335,37 +336,38 @@ document.addEventListener("DOMContentLoaded", function () {
                                 const historia_clinica = ""
 
                                 const newPacient = { dni, nombre, fecha_nacimiento, edad, genero, telefono, email, direccion, cobertura, numero_afiliado, notas, numero_historia_clinica, historia_clinica }
-                                console.log(newPacient);
 
-                                const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+
+
+                                const response = await fetch('http://localhost:3002/updateNewPacient', {
                                     method: 'POST',
                                     body: JSON.stringify(newPacient),
                                     headers: {
                                         'Content-type': 'application/json; charset=UTF-8',
                                     }
                                 });
-                                
 
-                                if (!response.ok) {
-                                    throw new Error(response.statusText)
-                                };                               
+                                if (response.ok) {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'Paciente guardado correctamente',
+                                        timer: 10000
+                                    })
+                                } else {
+                                    throw new Error(response.statusText);
+                                }
+
                             },
                         });
-                        if (newPacientValues.isConfirmed) {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Paciente guardado correctamente',
-                                showConfirmButton: false,
-                                timer: 1500
-                              })
-                        };
+
                     } catch (error) {
                         Swal.showValidationMessage(
                             `Request failed: ${error}`
                         )
                     }
                 })
+
 
 
                 const listPacientBody = document.createElement("div")
