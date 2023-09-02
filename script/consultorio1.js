@@ -478,7 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: `Algo no salio bien! Vuelve a intentarlo <br>
+                    text: `Algo no salio bien! Vuelve a intentarlo 
                     Actualiza el navegador`,
                     showConfirmButton: false,
                     background: 'linear-gradient(#d9e1e6, #6e99b3)',
@@ -537,18 +537,26 @@ document.addEventListener("DOMContentLoaded", function () {
         headerContainer.classList.add("header");
         calendarContainer.appendChild(headerContainer);
 
-        const prevButton = document.createElement("button");
+        const prevButton = document.createElement("div");
         prevButton.setAttribute("id", "prevMonth");
-        prevButton.textContent = "Anterior";
+        prevButton.innerHTML = `<button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill=#6e99b3 class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                                </svg>
+                                </button>`;
         headerContainer.appendChild(prevButton);
 
         const currentMonthHeader = document.createElement("h1");
         currentMonthHeader.setAttribute("id", "currentMonth");
         headerContainer.appendChild(currentMonthHeader);
 
-        const nextButton = document.createElement("button");
+        const nextButton = document.createElement("div");
         nextButton.setAttribute("id", "nextMonth");
-        nextButton.textContent = "Siguiente";
+        nextButton.innerHTML = `<button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill=#6e99b3 class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                </svg>
+                                </button>`;
         headerContainer.appendChild(nextButton);
 
         const divDay = document.createElement("div");
@@ -765,8 +773,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const div = document.createElement("div");
                 div.classList.add("office__day-table-appintmentTime-cell");
                 div.innerHTML = `<div class="appointmentTime">${slot.format("HH:mm")}</div>
-             <div class="info"></div>
-             <div id="patienInfo"></div> `;
+                <div class="info">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill=#6e99b3  class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                </svg>
+                </div>
+                <div id="patienInfo"></div> `;
                 td.appendChild(div);
 
             }

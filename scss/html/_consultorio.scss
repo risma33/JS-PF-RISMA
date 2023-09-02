@@ -5,8 +5,9 @@
 
 /*estilos para celulares*/
 body {
-    background-color: #ffff;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
     /*estilos header*/
     .header_consultingRoom {
@@ -46,18 +47,34 @@ body {
             }
         }
     }
+    main {
+        flex: 1;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 3fr;
 
-    /* Estilos del calendario */
+
+         /* Estilos del calendario */
     .office__calendar {
-        width: 300px;
+        width: 30;
         margin: 0 auto;
         text-align: center;
+        padding: 2rem;
+        border-top: 1px solid #5c7a92 ;
 
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
+            height: 2rem;
+            
+
+            #currentMonth {
+                font-family: $font-normal;
+                font-size: 1rem;
+                padding: 0.3rem;
+            }
         }
 
         .days {
@@ -106,15 +123,148 @@ body {
             }
         }
     }
+
+    #office__content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0px;
+        
+    
+        .office__week-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #d9e1e6;
+
+        }
+
+        .office__day-table{
+            width: 100%;
+
+            .office__day-table-header{
+                height: 2rem;
+                font-size: 1rem;
+                font-family: $font-normal;
+
+                tr{
+                    .office__day-table-header-cell{
+                        border-left: 1px solid #5c7a92;
+                        border-top: 1px solid #5c7a92;
+                        border-bottom: 1px solid #5c7a92;
+
+                        div {
+                            margin-left: 1rem;
+                            height: 4rem;
+                            padding: 1rem;
+                        }
+                    }
+                }
+            }
+            .office__day-table-body{
+ 
+                tr{
+                    border-left: 1px solid #5c7a92;
+
+                    td{
+                        div{
+                            display: grid;
+                            grid-template-columns: 1fr 3fr;
+                            grid-template-rows: 1fr 1fr;
+                            column-gap: 2rem;
+                            
+                            
+                            .appointmentTime{
+                                grid-column: 1/1;
+                                grid-row: 1/1;
+                                font-family: $font-montserrat;
+                                font-size: 1rem;
+                                display: flex;
+                                align-items: flex-end; 
+                                justify-content: center;
+                                width: 4rem;
+                                height: 4rem;
+                                margin-bottom: 0.5rem;
+                            }
+                            .info{
+                                grid-column: 1/1;
+                                grid-row: 2/2;
+                                display: flex;
+                                align-items: flex-start; 
+                                justify-content: center;
+                                height: 0.5rem;
+                                width: 4rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .office__week-table-header-cell {
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+        border: 1px solid #6e99b3;
+    }
+    
+    
+    #dayNameLink {
+        color: #ff5733; 
+    }
+    
+    
+    .office__week-table-body {
+        background-color: #f0f0f0;
+    }
+    
+    
+    tr {
+        border: 1px solid #ccc;
+    }
+    
+    
+    td {
+        padding: 10px;
+        text-align: center;
+        vertical-align: top;
+    }
+    
+  
+    .office__week-table-appintmentTime-cell {
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        background-color: #fff;
+    }
+    
+   
+    .appointmentTime {
+        font-weight: bold;
+        color: #333;
+    }
+    
+ 
+    .info {
+        color: #666;
+    }
+    
+   
+    #patienInfo {
+        color: #ff5733; 
+    }
+
     .closeSesion_alert{
         font-family: $font-montserrat;
        }
       
        .no-focus-outline {
         outline: none !important;
-       }
+       }}
+   
     .footer {
         @include footer;
+        
     }
 
 
