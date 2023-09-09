@@ -54,6 +54,8 @@ body {
         flex-direction: column;
         align-items: center;
 
+
+
         .consultorio__listPatient_conteiner {
 
             display: flex;
@@ -436,6 +438,142 @@ body {
 
     .footer {
         @include footer;
+    }
+
+    .newPacient_Toast-conteiner{
+
+        .newPacient_Toast-popup{
+            
+            .newPacient_Toast-title{
+                font-family: $font-normal;
+                color: #6E99B3;
+            }
+
+            .newPacient_Toast-bodyConteiner{
+                height: 100%;
+                font-family: $font-montserrat;
+
+                .newPacient_inputGenero-conteiner{
+                    height: auto;
+                    display: grid;
+                    grid-template-columns: 17.66rem;
+                    grid-row: 1fr;
+                    width: 28.40rem; 
+                    justify-content: center;
+                    align-content: center;
+                    
+
+                    #newPatien_inputGenero{
+                        margin-top: 1.26rem;
+                        font-family: $font-normal;
+                        color: #5c7a92;
+                        height: 3.18rem;
+                    }
+                }
+                .newPacient_inputBirthdate-conteiner{
+                    height: auto;
+                    display: grid;
+                    grid-template-columns: 17.66rem;
+                    grid-row: 1fr;
+                    width: 28.40rem; 
+                    justify-content: center;
+                    align-content: center;
+
+                    #newPatien_inputBirthdate{
+                        margin-top: 1.26rem;
+                        height: 3.18rem;
+                        color: #5c7a92
+                    }
+                }
+
+                .newPacient__coberturaConteiner{
+                    height: auto;
+                    display: grid;
+                    grid-template-columns: 17.66rem;
+                    grid-row: 1fr;
+                    width: 28.40rem; 
+                    justify-content: center;
+                    align-content: center;
+
+                    .newPacient__coberturaConteiner-header{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 2rem;
+                    height: 3.18rem;
+                    color: #5c7a92;
+                    font-family: $font-normal;
+                    }
+
+                    .newPacient__coberturaConteiner-input{
+                        div{
+                            #newPatien_inputCobertura{
+                                margin: 0px;
+                            }
+                        }
+
+                        div{
+                            #newPatien_inputNumeroAfiliado{
+                                margin: 0px;
+                            }
+                        }
+
+                    }
+
+                }
+
+                .newPacient__emailConteiner{
+                    .newPacient__emailConteiner-header{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        margin-top: 2rem;
+                        height: 3.18rem;
+                        color: #5c7a92;
+                        font-family: $font-normal;
+                    }
+                    div{
+                        #newPacient_inputEmail{
+                            margin-top: 0px;
+                        }
+                    }
+
+                }
+
+                .newPacient_telefonoConteiner{
+                    .newPacient__telefonoConteriner-Header{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        margin-top: 2rem;
+                        height: 3.18rem;
+                        color: #5c7a92;
+                        font-family: $font-normal;
+                    }
+                    div{
+                        #newPacient_telefono{
+                            margin-top: 0px;
+                        }
+                    }
+                }
+
+                .newPacient_direccionConteiner{
+                    margin-top: 2rem;
+                }
+
+                .newPacient_notasConteiner{
+                    #newPacient_inputNotas{
+                        height: 10rem;
+                    }
+                    #newPacient_inputNotas::placeholder{
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
     }
 }
 

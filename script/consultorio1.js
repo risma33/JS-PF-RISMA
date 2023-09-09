@@ -229,69 +229,73 @@ document.addEventListener("DOMContentLoaded", function () {
                         const { value: newPacientValues } = await Swal.fire({
                             title: 'Nuevo Paciente',
                             html:
-                                `<div>
+                                `   <div class="newPacient_inputName-conteiner">
                                         <input type="text" id="newPatien_inputName" placeholder="Nombre" class="swal2-input" autocomplete="off" required>
                                     </div>
                 
-                                    <div>
+                                    <div class="newPacient_inputLastName-conteiner">
                                         <input type="text" id="newPatien_inputLastName" placeholder="Apellido" class="swal2-input" autocomplete="off" required>
                                     </div>
-                                    <div>
+                                    <div class="newPacient_inputDni-conteiner">
                                         <input type="number" name="dni" id="newPatien_inputdni" placeholder="DNI" class="swal2-input" autocomplete="off" required>
                                     </div>
                 
-                                    <div>
-                                        <label class="form-label" for="gender">Género</label>
+                                    <div class="newPacient_inputGenero-conteiner">
+                                       
                                         <select id="newPatien_inputGenero" name="genero" class="form-select ">
-                                            <option value="">Seleccionar</option>
+                                            <option value="">Genero</option>
                                             <option value="female">Mujer</option>
                                             <option value="male">Hombre</option>
                                         </select>  
                                     </div>
                 
-                            <div>
-                                <label class="form-label " for="inputBirthdate">Fecha de nacimiento</label>
-                                <input type="date" name="fecha_nacimiento"id="newPatien_inputBirthdate" class="swal2-input" required>
-                            </div>
-                
-                            <div class="newPacient__coberturaConteiner">
-                                <div class="newPacient__coberturaConteiner-header">
-                                    <div class="coberturasTitle">Coberturas</div>
-                                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-                                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="newPacient__coberturaConteiner-input">
-                                    <div>
-                                        <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
+                                    <div class="newPacient_inputBirthdate-conteiner">
+                                        
+                                        <input type="date" name="fecha_nacimiento"id="newPatien_inputBirthdate" class="swal2-input" required>
                                     </div>
-                                    <div>
-                                        <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
-                                    </div>
-                                </div>
-                            </div>
                 
-                            <div class="newPacient__emailConteiner">
-                                <div class="newPacient__emailConteiner-header">
-                                    <div class="emailTitle">Emails</div>
-                                    <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
-                                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div>
-                                    <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
-                                </div>
-                            </div>
+                                    <div class="newPacient__coberturaConteiner">
+                                        <div class="newPacient__coberturaConteiner-header">
+                                            <div class="coberturasTitle">
+                                                Coberturas
+                                            </div>
+                                            <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                                <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="newPacient__coberturaConteiner-input">
+                                            <div>
+                                                <input type="text" name="cobertura" id="newPatien_inputCobertura" placeholder="Cobertura" class="swal2-input" autocomplete="off" required>
+                                            </div>
+                                            <div>
+                                                <input type="text" name="numero_afiliado" id="newPatien_inputNumeroAfiliado" placeholder="Numero de Afiliado" class="swal2-input" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="newPacient__emailConteiner">
+                                        <div class="newPacient__emailConteiner-header">
+                                            <div class="emailTitle">
+                                                Emails
+                                            </div>
+                                            <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                                <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <input type="email" name="email" id="newPacient_inputEmail" placeholder="Email" class="swal2-input" autocomplete="off" required>
+                                        </div>
+                                    </div>
                 
                             <div class="newPacient_telefonoConteiner">
                                 <div class="newPacient__telefonoConteriner-Header">
                                     <div class="telefonoTitle">telefono</div>
                                     <button class="btn .bg-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6e99b3" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
                                         <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
                                         </svg>
                                     </button>
@@ -301,14 +305,32 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                             </div>
                 
-                            <div>
+                            <div class="newPacient_direccionConteiner">
                                 <input type="text" name="direccion" id="newPacient_inputdireccion" placeholder="direccion" class="swal2-input" autocomplete="off">
                             </div>
                 
-                            <div>
+                            <div class="newPacient_notasConteiner">
                                 <input type="text" name="notas" id="newPacient_inputNotas" placeholder="notas" class="swal2-input" autocomplete="off">
                                     </div>`,
-
+                            customClass:{
+                                container: 'newPacient_Toast-conteiner',
+                                popup: 'newPacient_Toast-popup',
+                                title: 'newPacient_Toast-title',
+                                closeButton: '...',
+                                icon: '...',
+                                image: '...',
+                                htmlContainer: 'newPacient_Toast-bodyConteiner',
+                                input: '...',
+                                inputLabel: '...',
+                                validationMessage: '...',
+                                actions: '...',
+                                confirmButton: '...',
+                                denyButton: '...',
+                                cancelButton: '...',
+                                loader: '...',
+                                footer: '....',
+                                timerProgressBar: '....',
+                                    },
                             inputAttributes: {
                                 autocapitalize: 'off'
                             },
@@ -654,35 +676,35 @@ document.addEventListener("DOMContentLoaded", function () {
         const officeContent = document.createElement("div");
         officeContent.setAttribute("id", "office__content");
         main.appendChild(officeContent);
-    
+
         const selectedDay = dayjs(day);
-    
+
         officeContent.innerHTML = "";
-    
+
         const table = document.createElement("table");
         table.classList.add("office__week-table");
         officeContent.appendChild(table);
-    
+
         const thead = document.createElement("thead");
         thead.classList.add("office__week-table-header");
         table.appendChild(thead);
-    
+
         const doctorDayConsulting = document.createElement("tr");
         doctorDayConsulting.classList.add("table-primary");
         thead.appendChild(doctorDayConsulting);
-    
+
         const tbody = document.createElement("tbody");
         tbody.classList.add("office__week-table-body");
         table.appendChild(tbody);
-    
+
         const doctorTimeDayConsulting = document.createElement("tr");
         tbody.appendChild(doctorTimeDayConsulting);
-    
+
         for (let i = 0; i < 8; i++) {
             const currentDay = selectedDay.add(i, 'day');
             const dayName = consul_dayOfWeek[currentDay.day()];
             const horarioInfo = userLog.horarios.find(info => info.dia === dayName);
-    
+
             if (horarioInfo) {
                 const th = document.createElement("th");
                 th.classList.add("office__week-table-header-cell");
@@ -690,19 +712,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="currentMonthWeek">${currentDay.format("MM")}</div>
                     <div id="dayNameLink">${dayName}</div> `;
                 doctorDayConsulting.appendChild(th);
-    
+
                 const td = document.createElement("td");
                 doctorTimeDayConsulting.appendChild(td);
-    
+
                 const intervalPairs = Array.isArray(horarioInfo.intervalo[0]) ? horarioInfo.intervalo : [horarioInfo.intervalo];
-    
+
                 for (const interval of intervalPairs) {
                     const [startTime, endTime] = interval;
                     const startTimeObj = dayjs(currentDay).set('hour', parseInt(startTime.split(':')[0])).set('minute', parseInt(startTime.split(':')[1]));
                     const endTimeObj = dayjs(currentDay).set('hour', parseInt(endTime.split(':')[0])).set('minute', parseInt(endTime.split(':')[1]));
                     const tiempoConsulta = horarioInfo.tiempoConsulta;
                     const appointmentTime = getSlots(startTimeObj, endTimeObj, tiempoConsulta);
-    
+
                     for (const slot of appointmentTime) {
                         const div = document.createElement("div");
                         div.classList.add("office__week-table-appintmentTime-cell");
@@ -715,7 +737,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
-    
+
     function dayAppointmentCalendar(day) {
         const officeContent = document.createElement("div");
         officeContent.setAttribute("id", "office__content");

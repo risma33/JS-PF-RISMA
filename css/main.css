@@ -925,6 +925,86 @@ body {
     body .footer .footer__img--redes img {
       height: 20px;
       width: auto; }
+  body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-title {
+    font-family: "ethnocentric";
+    color: #6E99B3; }
+  body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner {
+    height: 100%;
+    font-family: "montserrat"; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_inputGenero-conteiner {
+      height: auto;
+      display: grid;
+      grid-template-columns: 17.66rem;
+      grid-row: 1fr;
+      width: 28.40rem;
+      justify-content: center;
+      align-content: center; }
+      body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_inputGenero-conteiner #newPatien_inputGenero {
+        margin-top: 1.26rem;
+        font-family: "ethnocentric";
+        color: #5c7a92;
+        height: 3.18rem; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_inputBirthdate-conteiner {
+      height: auto;
+      display: grid;
+      grid-template-columns: 17.66rem;
+      grid-row: 1fr;
+      width: 28.40rem;
+      justify-content: center;
+      align-content: center; }
+      body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_inputBirthdate-conteiner #newPatien_inputBirthdate {
+        margin-top: 1.26rem;
+        height: 3.18rem;
+        color: #5c7a92; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient__coberturaConteiner {
+      height: auto;
+      display: grid;
+      grid-template-columns: 17.66rem;
+      grid-row: 1fr;
+      width: 28.40rem;
+      justify-content: center;
+      align-content: center; }
+      body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient__coberturaConteiner .newPacient__coberturaConteiner-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+        height: 3.18rem;
+        color: #5c7a92;
+        font-family: "ethnocentric"; }
+      body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient__coberturaConteiner .newPacient__coberturaConteiner-input div #newPatien_inputCobertura {
+        margin: 0px; }
+      body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient__coberturaConteiner .newPacient__coberturaConteiner-input div #newPatien_inputNumeroAfiliado {
+        margin: 0px; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient__emailConteiner .newPacient__emailConteiner-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+      height: 3.18rem;
+      color: #5c7a92;
+      font-family: "ethnocentric"; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient__emailConteiner div #newPacient_inputEmail {
+      margin-top: 0px; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_telefonoConteiner .newPacient__telefonoConteriner-Header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+      height: 3.18rem;
+      color: #5c7a92;
+      font-family: "ethnocentric"; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_telefonoConteiner div #newPacient_telefono {
+      margin-top: 0px; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_direccionConteiner {
+      margin-top: 2rem; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_notasConteiner #newPacient_inputNotas {
+      height: 10rem; }
+    body .newPacient_Toast-conteiner .newPacient_Toast-popup .newPacient_Toast-bodyConteiner .newPacient_notasConteiner #newPacient_inputNotas::placeholder {
+      vertical-align: top; }
 
 /* estilos tablet*/
 @media screen and (min-width: 765px) and (max-width: 1020px) {
