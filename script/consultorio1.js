@@ -316,20 +316,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 container: 'newPacient_Toast-conteiner',
                                 popup: 'newPacient_Toast-popup',
                                 title: 'newPacient_Toast-title',
-                                closeButton: '...',
-                                icon: '...',
-                                image: '...',
+                                
                                 htmlContainer: 'newPacient_Toast-bodyConteiner',
-                                input: '...',
-                                inputLabel: '...',
-                                validationMessage: '...',
-                                actions: '...',
-                                confirmButton: '...',
-                                denyButton: '...',
-                                cancelButton: '...',
-                                loader: '...',
-                                footer: '....',
-                                timerProgressBar: '....',
+                                
                                     },
                             inputAttributes: {
                                 autocapitalize: 'off'
